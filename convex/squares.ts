@@ -26,15 +26,11 @@ export const createSquare = mutation({
     if (!userId) {
       return;
     }
-    const validatedName = squareName.safeParse(args.name);
-    if (!validatedName.success) {
-      throw new Error(validatedName.error.message);
-    }
-    const squareId = await ctx.db.insert("square", {
-      name: validatedName.data,
+    const squareId = await ctx.db.insert("squares", {
+      name: args.name,
       userId,
     });
-    await ctx.db.patch(userId, { squareId });
+    await ctx.db.patch(userId, { squareId: squareId });
   },
 });
 
@@ -47,14 +43,13 @@ export const updateSquareName = mutation({
     if (!userId) {
       return;
     }
-    const square = await ctx.db.get(userId);
+    const square = await ctx.db
+      .query("squares")
+      .filter((q) => q.eq(q.field("userId"), userId))
+      .first();
     if (!square) {
       return;
     }
-    const validatedName = squareName.safeParse(args.name);
-    if (!validatedName.success) {
-      throw new Error(validatedName.error.message);
-    }
-    await ctx.db.patch(square._id, { name: validatedName.data });
+    await ctx.db.patch(square._id, { name: args.name });
   },
 });

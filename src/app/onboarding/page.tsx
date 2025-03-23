@@ -19,7 +19,7 @@ const formSchema = z.object({
 export default function Onboarding() {
   const router = useRouter();
   const user = useQuery(api.users.getUser);
-  const updateSquareName = useMutation(api.squares.updateSquareName);
+  const createSquare = useMutation(api.squares.createSquare);
 
   const form = useForm({
     defaultValues: {
@@ -30,7 +30,11 @@ export default function Onboarding() {
     },
     onSubmit: async ({ value }) => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log(value);
+      try {
+        await createSquare({ name: value.squareName });
+      } catch (error) {
+        console.error(error);
+      }
     },
   });
 
