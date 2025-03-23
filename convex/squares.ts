@@ -1,7 +1,6 @@
 import { getAuthUserId } from "@convex-dev/auth/server";
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
-import { squareName } from "./validators";
 
 export const getSquare = query({
   handler: async (ctx) => {
@@ -9,7 +8,10 @@ export const getSquare = query({
     if (!userId) {
       return;
     }
-    const square = await ctx.db.get(userId);
+    const square = await ctx.db
+      .query("squares")
+      .filter((q) => q.eq(q.field("userId"), userId))
+      .first();
     if (!square) {
       return;
     }
