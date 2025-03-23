@@ -1,16 +1,12 @@
 import { LandingNavigation } from "@/components/landing-navigation";
 export default async function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <header className="row-start-1 flex flex-wrap items-center justify-center">
+    <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
+      <header className="row-start-1">
         <LandingNavigation />
       </header>
-      <main className="flex flex-col row-start-2 items-center sm:items-start">
-        homepage
-      </main>
-      <footer className="row-start-3 flex-wrap items-center justify-center">
-        footer
-      </footer>
+      <main className="row-start-2">homepage</main>
+      <footer className="row-start-3">footer</footer>
     </div>
   );
 }
