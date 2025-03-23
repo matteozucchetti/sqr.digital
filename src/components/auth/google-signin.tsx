@@ -7,7 +7,10 @@ export function GoogleSignin() {
   const { signIn } = useAuthActions();
 
   return (
-    <Button onClick={() => signIn("google")} variant="outline">
+    <Button
+      onClick={() => signIn("google", { redirectTo: "/admin" })}
+      variant="outline"
+    >
       Sign in with Google
     </Button>
   );

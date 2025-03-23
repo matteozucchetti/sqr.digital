@@ -1,8 +1,7 @@
 import { AppNavigation } from "@/components/app-navigation";
 import { api } from "@/convex/_generated/api";
 import { convexAuthNextjsToken } from "@convex-dev/auth/nextjs/server";
-import { fetchQuery, preloadQuery } from "convex/nextjs";
-import { usePreloadedQuery } from "convex/react";
+import { preloadQuery } from "convex/nextjs";
 
 export default async function Layout({
   children,

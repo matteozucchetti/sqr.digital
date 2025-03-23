@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const username = z
+export const squareName = z
   .string()
   .min(3)
   .max(32)
@@ -8,5 +8,5 @@ export const username = z
   .trim()
   .regex(
     /^[a-zA-Z0-9\s]+$/,
-    "Username may only contain alphanumeric characters and spaces.",
+    "Square name may only contain alphanumeric characters and spaces.",
   );

@@ -21,7 +21,6 @@ export const getUser = query({
     // });
     return {
       ...user,
-      name: user.username || user.name,
       //   subscription,
       //   avatarUrl: user.imageId
       //     ? await ctx.storage.getUrl(user.imageId)

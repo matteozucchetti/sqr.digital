@@ -14,8 +14,6 @@ export function AppNavigation({
   return (
     <div>
       <Link href="/">Home</Link>
-      <Link href="/dashboard">Dashboard</Link>
-      <Link href="/settings">Settings</Link>
       {user?.email}
     </div>
   );

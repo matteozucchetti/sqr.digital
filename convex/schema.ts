@@ -15,5 +15,11 @@ export default defineSchema({
     isAnonymous: v.optional(v.boolean()),
 
     // custom fields
+    squareId: v.optional(v.id("square")),
   }).index("email", ["email"]),
+
+  square: defineTable({
+    name: v.string(),
+    userId: v.id("users"),
+  }).index("userId", ["userId"]),
 });
