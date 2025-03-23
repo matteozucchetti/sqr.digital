@@ -5,10 +5,16 @@ import {
 } from "@convex-dev/auth/nextjs/server";
 
 const isLoginPage = createRouteMatcher(["/login"]);
+const isMarketingPage = createRouteMatcher(["/"]);
 
 export default convexAuthNextjsMiddleware(async (request, { convexAuth }) => {
   const isAuthenticated = await convexAuth.isAuthenticated();
   const isLogin = isLoginPage(request);
+  const isMarketing = isMarketingPage(request);
+
+  if (isMarketing) {
+    return;
+  }
 
   if (isLogin && isAuthenticated) {
     console.log("redirecting to /", {

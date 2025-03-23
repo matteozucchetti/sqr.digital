@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev & convex dev",
-    "dev:frontend": "next dev --turbopack --port 3000",
+    "dev:frontend": "next dev --turbopack",
     "dev:backend": "convex dev",
+    "dev": "concurrently \"pnpm dev:frontend\" \"pnpm dev:backend\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -32,6 +32,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.1.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
