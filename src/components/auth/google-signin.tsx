@@ -9,7 +9,9 @@ export function GoogleSignin() {
   return (
     <Button
       onClick={() =>
-        signIn("google", { redirectTo: `${window.location.href}/admin` })
+        signIn("google", {
+          redirectTo: `${window.location.origin}/admin`,
+        })
       }
       variant="outline"
     >
