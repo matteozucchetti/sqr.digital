@@ -16,7 +16,7 @@ export function Heading({
 
   return (
     <div className="bg-foreground px-8 py-12 rounded-b-xl">
-      <Display1 className="text-background">
+      <Display1 as="h1" className="text-background">
         Benvenuto nella tua area privata
       </Display1>
 
@@ -41,7 +41,7 @@ export function Heading({
         </div>
       </div>
 
-      <Separator />
+      <Separator className="bg-[#5A5A5A]" />
 
       <Button className="w-full">Visualizza QRCode</Button>
     </div>

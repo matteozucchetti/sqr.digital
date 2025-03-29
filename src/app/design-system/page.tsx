@@ -81,23 +81,7 @@ export default function DesignSystem() {
         <section className="space-y-6">
           <Display2 as="h2">Buttons</Display2>
           <div className="flex flex-wrap gap-4">
-            <Button variant="default">Default</Button>
-            <Button variant="destructive">Destructive</Button>
-            <Button variant="outline">Outline</Button>
-            <Button variant="secondary">Secondary</Button>
-            <Button variant="ghost">Ghost</Button>
-            <Button variant="link">Link</Button>
-          </div>
-          <div className="flex flex-wrap gap-4">
-            <Button size="lg">Large</Button>
             <Button>Default</Button>
-            <Button size="sm">Small</Button>
-          </div>
-          <div className="flex flex-wrap gap-4">
-            <Button disabled>Disabled</Button>
-            <Button variant="outline" disabled>
-              Disabled Outline
-            </Button>
           </div>
         </section>
       </Container>

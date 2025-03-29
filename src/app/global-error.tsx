@@ -9,7 +9,6 @@ export default function GlobalError({
   error: Error & { digest?: string };
 }) {
   useEffect(() => {
-    // Error logging (Sentry removed)
     console.error("Global error:", error);
   }, [error]);
 

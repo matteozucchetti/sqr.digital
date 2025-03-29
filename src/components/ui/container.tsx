@@ -16,7 +16,7 @@ export function Container({
     <div
       className={cn(
         "w-full mx-auto",
-        variant === "padded" && "container px-4 md:px-6",
+        variant === "padded" && "container px-8",
         className,
       )}
     >
