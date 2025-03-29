@@ -52,14 +52,12 @@ export const getSquares = query({
 export const getFirstSquare = query({
   handler: async (ctx) => {
     const userId = await getAuthUserId(ctx);
-    if (!userId) {
-      throw new ConvexError("Not authenticated");
-    }
-    const squares = await ctx.db
+    if (!userId) return null;
+
+    return await ctx.db
       .query("squares")
       .filter((q) => q.eq(q.field("userId"), userId))
       .first();
-    return squares;
   },
 });
 
