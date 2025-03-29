@@ -5,13 +5,11 @@ import { preloadQuery } from "convex/nextjs";
 import { Heading } from "./_components/heading";
 import { Info } from "./_components/info";
 
-interface Props {
-  params: {
-    squareId: string;
-  };
-}
-
-export default async function AdminSettings({ params }: Props) {
+export default async function AdminSettings({
+  params,
+}: {
+  params: { squareId: string };
+}) {
   const preloadedSquare = await preloadQuery(
     api.squares.getSquareById,
     { id: params.squareId as Id<"squares"> },

@@ -1,5 +1,4 @@
 import { GoogleSignin } from "@/components/auth/google-signin";
-import Image from "next/image";
 
 export const metadata = {
   title: "Login",

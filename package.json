@@ -8,7 +8,7 @@
     "dev": "concurrently \"pnpm dev:frontend\" \"pnpm dev:backend\"",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "biome check --write"
   },
   "dependencies": {
     "@auth/core": "0.37.0",

@@ -6,13 +6,11 @@ import { Heading } from "./_components/heading";
 import { Info } from "./_components/info";
 import { Theme } from "./_components/theme";
 
-interface Props {
-  params: {
-    squareId: string;
-  };
-}
-
-export default async function Admin({ params }: Props) {
+export default async function Admin({
+  params,
+}: {
+  params: { squareId: string };
+}) {
   const preloadedSquare = await preloadQuery(
     api.squares.getSquareById,
     { id: params.squareId as Id<"squares"> },

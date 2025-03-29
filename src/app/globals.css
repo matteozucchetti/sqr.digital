@@ -45,19 +45,19 @@
 
 :root {
   --radius: 2rem;
-  --background: #FFFFFF;
-  --foreground: #2A2A2A;
-  --card: #FFFFFF;
-  --card-foreground: #2A2A2A;
-  --popover: #FFFFFF;
-  --popover-foreground: #2A2A2A;
-  --primary: #2A2A2A;
-  --primary-foreground: #FFFFFF;
-  --secondary: #2A2A2A;
-  --secondary-foreground: #FFFFFF;
-  --muted: #32B4A3;
+  --background: #ffffff;
+  --foreground: #2a2a2a;
+  --card: #ffffff;
+  --card-foreground: #2a2a2a;
+  --popover: #ffffff;
+  --popover-foreground: #2a2a2a;
+  --primary: #2a2a2a;
+  --primary-foreground: #ffffff;
+  --secondary: #2a2a2a;
+  --secondary-foreground: #ffffff;
+  --muted: #32b4a3;
   --muted-foreground: oklch(0.556 0 0);
-  --accent: #32B4A3;
+  --accent: #32b4a3;
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
@@ -72,7 +72,7 @@
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: #32B4A3;
+  --sidebar-accent: #32b4a3;
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
