@@ -1,3 +1,4 @@
+import { THEMES } from "@/lib/config";
 import { getAuthUserId } from "@convex-dev/auth/server";
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
@@ -31,6 +32,7 @@ export const createSquare = mutation({
     const squareId = await ctx.db.insert("squares", {
       name: args.name,
       userId,
+      theme: THEMES.GOLD,
     });
     await ctx.db.patch(userId, { squareId: squareId });
   },
