@@ -10,6 +10,8 @@ export function AppNavigation({
   preloadedUser: Preloaded<typeof api.users.getUser>;
 }) {
   const user = usePreloadedQuery(preloadedUser);
+  // TODO: Add navigation
+  console.log(user);
 
   return (
     <div className="bg-[#1D1D1B] text-background flex items-center justify-center py-4">

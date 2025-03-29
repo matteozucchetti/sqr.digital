@@ -85,7 +85,9 @@ export const Text = ({
   className,
 }: TypographyProps) => {
   return (
-    <Component className={cn("text-base font-body mb-2", className)}>
+    <Component
+      className={cn("text-base font-body mb-2 tracking-wide", className)}
+    >
       {children}
     </Component>
   );
@@ -97,7 +99,9 @@ export const Small = ({
   className,
 }: TypographyProps) => {
   return (
-    <Component className={cn("text-sm font-body mb-2", className)}>
+    <Component
+      className={cn("text-sm font-body mb-2 tracking-wide", className)}
+    >
       {children}
     </Component>
   );

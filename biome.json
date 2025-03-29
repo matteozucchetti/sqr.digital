@@ -16,10 +16,14 @@
       },
       "correctness": {
         "useExhaustiveDependencies": "off",
-        "noUnusedImports": "error"
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error"
       },
       "complexity": {
         "noForEach": "off"
+      },
+      "suspicious": {
+        "noConsoleLog": "warn"
       }
     }
   },

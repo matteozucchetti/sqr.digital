@@ -12,9 +12,11 @@ export function Info({
   preloadedSquare: Preloaded<typeof api.squares.getSquare>;
 }) {
   const square = usePreloadedQuery(preloadedSquare);
+  // TODO: Add form for info
+  console.log(square);
 
   return (
-    <Container className="py-12">
+    <Container className="pt-8">
       <Display1 as="h2" className="mb-8">
         Impostazioni
       </Display1>

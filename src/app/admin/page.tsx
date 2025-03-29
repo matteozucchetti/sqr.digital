@@ -3,6 +3,7 @@ import { convexAuthNextjsToken } from "@convex-dev/auth/nextjs/server";
 import { preloadQuery } from "convex/nextjs";
 import { Heading } from "./_components/heading";
 import { Info } from "./_components/info";
+import { Theme } from "./_components/theme";
 
 export default async function Admin() {
   const preloadedSquare = await preloadQuery(
@@ -14,9 +15,10 @@ export default async function Admin() {
   );
 
   return (
-    <div>
+    <>
       <Heading preloadedSquare={preloadedSquare} />
       <Info preloadedSquare={preloadedSquare} />
-    </div>
+      <Theme />
+    </>
   );
 }

@@ -1,3 +1,4 @@
+import { AppFooter } from "@/components/app-footer";
 import { AppNavigation } from "@/components/app-navigation";
 import { api } from "@/convex/_generated/api";
 import { convexAuthNextjsToken } from "@convex-dev/auth/nextjs/server";
@@ -28,7 +29,9 @@ export default async function Layout({
         <AppNavigation preloadedUser={preloadedUser} />
       </header>
       <main className="row-start-2">{children}</main>
-      <footer className="row-start-3">footer</footer>
+      <footer className="row-start-3">
+        <AppFooter />
+      </footer>
     </div>
   );
 }
