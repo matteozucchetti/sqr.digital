@@ -9,11 +9,12 @@ import { Theme } from "./_components/theme";
 export default async function Admin({
   params,
 }: {
-  params: { squareId: string };
+  params: Promise<{ squareId: string }>;
 }) {
+  const { squareId } = await params;
   const preloadedSquare = await preloadQuery(
     api.squares.getSquareById,
-    { id: params.squareId as Id<"squares"> },
+    { id: squareId as Id<"squares"> },
     { token: await convexAuthNextjsToken() },
   );
 
