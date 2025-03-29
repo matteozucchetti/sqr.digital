@@ -8,7 +8,9 @@ export function GoogleSignin() {
 
   return (
     <Button
-      onClick={() => signIn("google", { redirectTo: "/admin" })}
+      onClick={() =>
+        signIn("google", { redirectTo: `${window.location.origin}/admin` })
+      }
       variant="outline"
     >
       Sign in with Google
