@@ -1,6 +1,6 @@
 "use client";
 
-import { Display1, Display2, Text } from "@/components/typography";
+import { Display1, Text } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import type { api } from "@/convex/_generated/api";
@@ -17,16 +17,19 @@ export function Heading({
 
   return (
     <div className="bg-foreground px-8 py-12 rounded-b-xl">
+      <Button variant="link" asChild>
+        <Link href={"/admin"}>Torna indietro</Link>
+      </Button>
+
+      <Separator className="bg-[#5A5A5A]" />
+
+      <Text className="text-background">Nome struttura:</Text>
       <Display1 as="h1" className="text-background">
-        Benvenuto nella tua area privata
+        {square?.name}
       </Display1>
 
-      <Text className="text-background">
-        Qui puoi gestire i tuoi dati e le tue impostazioni.
-      </Text>
-
-      <div className="flex items-center gap-4 mt-8">
-        <div className="relative w-16 h-16 rounded-full overflow-hidden">
+      <div className="grid grid-cols-2 gap-4 my-8">
+        <div className="relative aspect-square rounded-full overflow-hidden">
           <Image
             src="/hotel-savoia.jpg"
             alt="Hotel Savoia"
@@ -35,18 +38,15 @@ export function Heading({
           />
         </div>
         <div>
-          <Display2 className="text-white text-2xl font-heading mb-0">
-            {square?.name}
-          </Display2>
-          <Link href={"/admin/settings"}>
-            <Button variant="link">Modifica profilo</Button>
-          </Link>
+          <Text className="text-background">
+            Inserisci una foto della tua struttura. Sarà visibile nella parte
+            iniziale della pagina pubblica del tuo Square.
+          </Text>
         </div>
       </div>
 
+      <Text className="text-background">Logo:</Text>
       <Separator className="bg-[#5A5A5A]" />
-
-      <Button className="w-full">Visualizza QRCode</Button>
     </div>
   );
 }
