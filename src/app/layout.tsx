@@ -1,22 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Quicksand } from "next/font/google";
 import "./globals.css";
 import { ConvexClientProvider } from "@/lib/convex-client-provider";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const quicksand = Quicksand({
+  variable: "--font-quicksand",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: "Square",
-  description: "",
+  description: "Digitalizza le informazioni turistiche della tua attività",
 };
 
 export default function RootLayout({
@@ -27,9 +22,7 @@ export default function RootLayout({
   return (
     <ConvexAuthNextjsServerProvider>
       <html lang="it">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+        <body className={`${quicksand.variable} antialiased font-body`}>
           <ConvexClientProvider>{children}</ConvexClientProvider>
         </body>
       </html>

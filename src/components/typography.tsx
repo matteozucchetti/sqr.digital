@@ -13,7 +13,7 @@ export const Display1 = ({
   className,
 }: TypographyProps) => {
   return (
-    <Component className={cn("text-4xl font-bold", className)}>
+    <Component className={cn("text-4xl font-heading", className)}>
       {children}
     </Component>
   );
@@ -25,7 +25,7 @@ export const Display2 = ({
   className,
 }: TypographyProps) => {
   return (
-    <Component className={cn("text-3xl font-bold", className)}>
+    <Component className={cn("text-3xl font-heading", className)}>
       {children}
     </Component>
   );
@@ -37,7 +37,7 @@ export const Display3 = ({
   className,
 }: TypographyProps) => {
   return (
-    <Component className={cn("text-2xl font-bold", className)}>
+    <Component className={cn("text-2xl font-heading", className)}>
       {children}
     </Component>
   );
@@ -49,7 +49,7 @@ export const Display4 = ({
   className,
 }: TypographyProps) => {
   return (
-    <Component className={cn("text-xl font-bold", className)}>
+    <Component className={cn("text-xl font-heading", className)}>
       {children}
     </Component>
   );
@@ -61,7 +61,7 @@ export const Display5 = ({
   className,
 }: TypographyProps) => {
   return (
-    <Component className={cn("text-lg font-bold", className)}>
+    <Component className={cn("text-lg font-heading", className)}>
       {children}
     </Component>
   );
@@ -73,7 +73,7 @@ export const Display6 = ({
   className,
 }: TypographyProps) => {
   return (
-    <Component className={cn("text-base font-bold", className)}>
+    <Component className={cn("text-base font-heading", className)}>
       {children}
     </Component>
   );
@@ -85,7 +85,9 @@ export const Text = ({
   className,
 }: TypographyProps) => {
   return (
-    <Component className={cn("text-base", className)}>{children}</Component>
+    <Component className={cn("text-base font-body", className)}>
+      {children}
+    </Component>
   );
 };
 
@@ -94,5 +96,9 @@ export const Small = ({
   as: Component = "div",
   className,
 }: TypographyProps) => {
-  return <Component className={cn("text-sm", className)}>{children}</Component>;
+  return (
+    <Component className={cn("text-sm font-body", className)}>
+      {children}
+    </Component>
+  );
 };
