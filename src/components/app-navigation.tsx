@@ -12,9 +12,10 @@ export function AppNavigation({
   const user = usePreloadedQuery(preloadedUser);
 
   return (
-    <div>
-      <Link href="/">Home</Link>
-      {user?.email}
+    <div className="bg-[#1D1D1B] text-background flex items-center justify-center py-4">
+      <Link href="/">
+        <img src="https://placehold.co/100x20" alt="Square" />
+      </Link>
     </div>
   );
 }
