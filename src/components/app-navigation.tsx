@@ -6,13 +6,16 @@ import Link from "next/link";
 
 export function AppNavigation({
   preloadedUser,
+  preloadedSquares,
 }: {
   preloadedUser: Preloaded<typeof api.users.getUser>;
+  preloadedSquares: Preloaded<typeof api.squares.getSquares>;
 }) {
   const user = usePreloadedQuery(preloadedUser);
+  const squares = usePreloadedQuery(preloadedSquares);
   // TODO: Add navigation
   console.log(user);
-
+  console.log(squares);
   return (
     <div className="bg-[#1D1D1B] text-background flex items-center justify-center py-4">
       <Link href="/">

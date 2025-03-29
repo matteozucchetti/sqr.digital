@@ -1,15 +1,13 @@
 import type { AnyFieldApi } from "@tanstack/react-form/nextjs";
 
 export default function FieldInfo({ field }: { field: AnyFieldApi }) {
+  if (!field.state.meta.errors?.length) return null;
+
   return (
-    <>
-      {field.state.meta.isTouched && field.state.meta.errors.length ? (
-        <ul className="list-disc pl-4">
-          {field.state.meta.errors.map((err) => (
-            <li key={err.message}>{err.message}</li>
-          ))}
-        </ul>
-      ) : null}
-    </>
+    <ul className="list-disc pl-4 text-red-500 text-sm">
+      {field.state.meta.errors.map((error) => (
+        <li key={error.message || error.onChange}>{error.message || error}</li>
+      ))}
+    </ul>
   );
 }

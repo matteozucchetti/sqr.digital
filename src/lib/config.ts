@@ -1,3 +1,10 @@
+// ERRORS
+
+export const ERRORS = {
+  SQUARE_NAME_ALREADY_EXISTS:
+    "Esiste già uno Square con questo nome, scegline un altro",
+} as const;
+
 // PLANS
 
 export type Plan = "free" | "single" | "pro" | "enterprise";
@@ -22,11 +29,11 @@ export const isPlanGreaterOrEqual = (userPlan: Plan, plan: Plan) => {
 
 // THEMES
 
-export type Theme = "gold" | "red" | "blue" | "green";
+export type Theme = "default" | "red" | "blue" | "gold";
 
 export const THEMES = {
-  GOLD: "gold",
+  DEFAULT: "default",
   RED: "red",
   BLUE: "blue",
-  GREEN: "green",
+  GOLD: "gold",
 } as const;

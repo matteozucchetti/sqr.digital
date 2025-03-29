@@ -11,11 +11,9 @@ import Link from "next/link";
 export function Info({
   preloadedSquare,
 }: {
-  preloadedSquare: Preloaded<typeof api.squares.getSquare>;
+  preloadedSquare: Preloaded<typeof api.squares.getSquareById>;
 }) {
   const square = usePreloadedQuery(preloadedSquare);
-  // TODO: Add form for info
-  console.log(square);
 
   return (
     <Container className="pt-8">
@@ -32,7 +30,7 @@ export function Info({
       <Separator />
 
       <Button className="w-full" asChild>
-        <Link href="/admin">Ritorna nell'area privata</Link>
+        <Link href={`/admin/${square?._id}`}>Ritorna nell'area privata</Link>
       </Button>
     </Container>
   );

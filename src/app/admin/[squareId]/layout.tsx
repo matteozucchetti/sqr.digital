@@ -2,20 +2,16 @@ import { AppFooter } from "@/components/app-footer";
 import { AppNavigation } from "@/components/app-navigation";
 import { api } from "@/convex/_generated/api";
 import { convexAuthNextjsToken } from "@convex-dev/auth/nextjs/server";
-import { fetchQuery, preloadQuery } from "convex/nextjs";
-import { redirect } from "next/navigation";
+import { preloadQuery } from "convex/nextjs";
 
 export default async function Layout({
   children,
 }: { children: React.ReactNode }) {
-  const user = await fetchQuery(
-    api.users.getUser,
+  const preloadedSquares = await preloadQuery(
+    api.squares.getSquares,
     {},
     { token: await convexAuthNextjsToken() },
   );
-  if (!user?.squareId) {
-    return redirect("/onboarding");
-  }
 
   const preloadedUser = await preloadQuery(
     api.users.getUser,
@@ -26,7 +22,10 @@ export default async function Layout({
   return (
     <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
       <header className="row-start-1">
-        <AppNavigation preloadedUser={preloadedUser} />
+        <AppNavigation
+          preloadedUser={preloadedUser}
+          preloadedSquares={preloadedSquares}
+        />
       </header>
       <main className="row-start-2">{children}</main>
       <footer className="row-start-3">

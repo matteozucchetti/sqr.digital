@@ -11,14 +11,14 @@ import Link from "next/link";
 export function Heading({
   preloadedSquare,
 }: {
-  preloadedSquare: Preloaded<typeof api.squares.getSquare>;
+  preloadedSquare: Preloaded<typeof api.squares.getSquareById>;
 }) {
   const square = usePreloadedQuery(preloadedSquare);
 
   return (
     <div className="bg-foreground px-8 py-12 rounded-b-xl">
       <Button variant="link" asChild>
-        <Link href={"/admin"}>Torna indietro</Link>
+        <Link href={`/admin/${square?._id}`}>Torna indietro</Link>
       </Button>
 
       <Separator className="bg-[#5A5A5A]" />

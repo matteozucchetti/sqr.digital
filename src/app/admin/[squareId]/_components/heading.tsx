@@ -11,7 +11,7 @@ import Link from "next/link";
 export function Heading({
   preloadedSquare,
 }: {
-  preloadedSquare: Preloaded<typeof api.squares.getSquare>;
+  preloadedSquare: Preloaded<typeof api.squares.getSquareById>;
 }) {
   const square = usePreloadedQuery(preloadedSquare);
 
@@ -38,7 +38,7 @@ export function Heading({
           <Display2 className="text-white text-2xl font-heading mb-0">
             {square?.name}
           </Display2>
-          <Link href={"/admin/settings"}>
+          <Link href={`/admin/${square?._id}/settings`}>
             <Button variant="link">Modifica profilo</Button>
           </Link>
         </div>

@@ -46,7 +46,7 @@ const Theme = v.union(
   v.literal("gold"),
   v.literal("red"),
   v.literal("blue"),
-  v.literal("green"),
+  v.literal("default"),
 );
 
 export default defineSchema({
@@ -61,8 +61,6 @@ export default defineSchema({
     phoneVerificationTime: v.optional(v.number()),
     isAnonymous: v.optional(v.boolean()),
 
-    // custom fields
-    squareId: v.optional(v.id("squares")),
     plan: Plan,
   }).index("email", ["email"]),
 

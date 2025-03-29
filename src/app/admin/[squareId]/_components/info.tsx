@@ -3,18 +3,8 @@
 import { Display1, Display3, Text } from "@/components/typography";
 import { Container } from "@/components/ui/container";
 import { Separator } from "@/components/ui/separator";
-import type { api } from "@/convex/_generated/api";
-import { type Preloaded, usePreloadedQuery } from "convex/react";
 
-export function Info({
-  preloadedSquare,
-}: {
-  preloadedSquare: Preloaded<typeof api.squares.getSquare>;
-}) {
-  const square = usePreloadedQuery(preloadedSquare);
-  // TODO: Add form for info
-  console.log(square);
-
+export function Info() {
   return (
     <Container className="pt-8">
       <Display1 as="h2" className="mb-8">

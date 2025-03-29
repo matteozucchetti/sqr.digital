@@ -6,10 +6,10 @@ import { Icons } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
 import { api } from "@/convex/_generated/api";
 import * as validators from "@/convex/validators";
+import { ERRORS } from "@/lib/config";
 import { useForm } from "@tanstack/react-form";
 import { useMutation, useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { z } from "zod";
 
 const formSchema = z.object({
@@ -28,24 +28,23 @@ export default function Onboarding() {
     validators: {
       onSubmit: formSchema,
     },
-    onSubmit: async ({ value }) => {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+    onSubmit: async ({ value, formApi }) => {
       try {
-        await createSquare({ name: value.squareName });
+        const squareId = await createSquare({ name: value.squareName });
+        formApi.reset();
+        router.push(`/admin/${squareId}`);
       } catch (error) {
-        console.error(error);
+        if (error instanceof Error) {
+          formApi.setFieldMeta("squareName", (prev) => ({
+            ...prev,
+            errorMap: {
+              onChange: ERRORS.SQUARE_NAME_ALREADY_EXISTS,
+            },
+          }));
+        }
       }
     },
   });
-
-  useEffect(() => {
-    if (!user) {
-      return;
-    }
-    if (user?.squareId) {
-      router.push("/admin");
-    }
-  }, [user]);
 
   if (!user) {
     return null;
@@ -53,7 +52,7 @@ export default function Onboarding() {
 
   return (
     <div className="max-w-md w-full mx-auto">
-      <p>Onboarding - crea il tuo square</p>
+      <p>Onboarding - crea un nuovo Square</p>
       <form
         className="flex flex-col gap-4"
         onSubmit={(e) => {
@@ -87,7 +86,7 @@ export default function Onboarding() {
                 {isSubmitting ? (
                   <Icons.Loader className="animate-spin" />
                 ) : (
-                  "Continue"
+                  "Continua"
                 )}
               </Button>
             </>
