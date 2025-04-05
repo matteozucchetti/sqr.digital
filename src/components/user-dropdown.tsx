@@ -33,7 +33,7 @@ export function UserDropdown({
         <DropdownMenuLabel>{user?.email}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <div className="flex flex-col gap-2 py-2">
-          {squares.map((square) => (
+          {squares?.map((square) => (
             <Button
               key={square._id}
               variant="link"

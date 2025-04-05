@@ -25,6 +25,7 @@ export default async function Layout({
         <Navigation
           preloadedUser={preloadedUser}
           preloadedSquares={preloadedSquares}
+          isAuthPage={true}
         />
       </header>
       <main className="row-start-2">{children}</main>

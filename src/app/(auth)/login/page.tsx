@@ -6,10 +6,10 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center">
-      <div className="flex flex-col items-center justify-center size-96">
-        <GoogleSignin />
-      </div>
+    <div className="max-w-md mx-auto py-12 flex flex-col gap-4">
+      <h1 className="text-2xl font-bold">Login</h1>
+      <p className="text-sm text-gray-500">Accedi con il tuo account Google.</p>
+      <GoogleSignin />
     </div>
   );
 }
