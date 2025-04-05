@@ -38,7 +38,7 @@ export const getSquares = query({
   handler: async (ctx) => {
     const userId = await getAuthUserId(ctx);
     if (!userId) {
-      throw new ConvexError("Not authenticated");
+      return null;
     }
 
     const squares = await ctx.db

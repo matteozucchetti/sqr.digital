@@ -7,14 +7,14 @@ import { preloadQuery } from "convex/nextjs";
 export default async function Layout({
   children,
 }: { children: React.ReactNode }) {
-  const preloadedSquares = await preloadQuery(
-    api.squares.getSquares,
+  const preloadedUser = await preloadQuery(
+    api.users.getUser,
     {},
     { token: await convexAuthNextjsToken() },
   );
 
-  const preloadedUser = await preloadQuery(
-    api.users.getUser,
+  const preloadedSquares = await preloadQuery(
+    api.squares.getSquares,
     {},
     { token: await convexAuthNextjsToken() },
   );
