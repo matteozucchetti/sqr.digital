@@ -12,7 +12,7 @@ export function GoogleSignin() {
         signIn("google", { redirectTo: `${window.location.origin}/admin` })
       }
     >
-      Sign in with Google
+      Login con Google
     </Button>
   );
 }
