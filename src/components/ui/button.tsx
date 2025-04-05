@@ -11,6 +11,8 @@ const buttonVariants = cva(
       variant: {
         default:
           "bg-accent text-primary-foreground shadow-xs hover:bg-accent/90 text-base uppercase font-bold tracking-wide px-4 py-2 h-12",
+        small:
+          "bg-accent text-primary-foreground shadow-xs hover:bg-accent/90 text-sm uppercase font-bold tracking-wide px-4 py-2 h-8",
         link: "text-accent underline-offset-4 underline hover:text-accent/90 py-0 px-0",
       },
     },

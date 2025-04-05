@@ -1,4 +1,4 @@
-import { AppNavigation } from "@/components/app-navigation";
+import { Navigation } from "@/components/navigation";
 import { api } from "@/convex/_generated/api";
 import { convexAuthNextjsToken } from "@convex-dev/auth/nextjs/server";
 import { preloadQuery } from "convex/nextjs";
@@ -21,7 +21,7 @@ export default async function Layout({
   return (
     <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
       <header className="row-start-1">
-        <AppNavigation
+        <Navigation
           preloadedUser={preloadedUser}
           preloadedSquares={preloadedSquares}
         />

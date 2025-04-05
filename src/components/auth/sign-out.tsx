@@ -8,9 +8,13 @@ export function SignOut() {
   const { signOut } = useAuthActions();
 
   return (
-    <Button onClick={signOut} className="gap-2 flex items-center">
+    <Button
+      variant="link"
+      onClick={signOut}
+      className="gap-2 flex items-center justify-start text-foreground text-sm"
+    >
       <Icons.SignOut className="size-4" />
-      <span>Sign out</span>
+      <span>Logout</span>
     </Button>
   );
 }
