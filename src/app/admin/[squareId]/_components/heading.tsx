@@ -7,7 +7,7 @@ import type { api } from "@/convex/_generated/api";
 import { type Preloaded, usePreloadedQuery } from "convex/react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { QrCodeDialog } from "./qr-code-dialog";
 export function Heading({
   preloadedSquare,
 }: {
@@ -46,7 +46,7 @@ export function Heading({
 
       <Separator className="bg-[#5A5A5A]" />
 
-      <Button className="w-full">Visualizza QRCode</Button>
+      <QrCodeDialog />
     </div>
   );
 }
