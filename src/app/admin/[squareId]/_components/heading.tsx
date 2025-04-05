@@ -28,7 +28,7 @@ export function Heading({
       <div className="flex items-center gap-4 mt-8">
         <div className="relative w-16 h-16 rounded-full overflow-hidden">
           <Image
-            src="/hotel-savoia.jpg"
+            src={square?.logo || ""}
             alt="Hotel Savoia"
             fill
             className="object-cover"
