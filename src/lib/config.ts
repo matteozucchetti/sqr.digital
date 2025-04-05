@@ -35,3 +35,7 @@ export const THEMES = {
   BLUE: "blue",
   GOLD: "gold",
 } as const;
+
+// RESEND
+
+export const DEFAULT_AUDIENCE_ID = "0338d67a-8523-45cc-b5ca-6cad2d7299df";

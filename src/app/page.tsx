@@ -1,4 +1,5 @@
 import { AppFooter } from "@/components/app-footer";
+import { ComingSoon } from "@/components/coming-soon";
 import { Navigation } from "@/components/navigation";
 import { api } from "@/convex/_generated/api";
 import { convexAuthNextjsToken } from "@convex-dev/auth/nextjs/server";
@@ -24,7 +25,9 @@ export default async function Home() {
           preloadedSquares={preloadedSquares}
         />
       </header>
-      <main className="row-start-2">homepage</main>
+      <main className="row-start-2">
+        <ComingSoon />
+      </main>
       <footer className="row-start-3">
         <AppFooter />
       </footer>
