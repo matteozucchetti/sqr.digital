@@ -9,12 +9,12 @@ export function SignOut() {
 
   return (
     <Button
+      variant="link"
       onClick={signOut}
-      variant="outline"
-      className="gap-2 flex items-center"
+      className="gap-2 flex items-center justify-start text-foreground text-sm"
     >
       <Icons.SignOut className="size-4" />
-      <span>Sign out</span>
+      <span>Logout</span>
     </Button>
   );
 }

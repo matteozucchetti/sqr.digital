@@ -1,20 +1,22 @@
+"use client";
+
 import { api } from "@/convex/_generated/api";
-import { convexAuthNextjsToken } from "@convex-dev/auth/nextjs/server";
-import { preloadQuery } from "convex/nextjs";
-import { Heading } from "./_components/heading";
+import { useQuery } from "convex/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-export default async function Admin() {
-  const preloadedSquare = await preloadQuery(
-    api.squares.getSquare,
-    {},
-    {
-      token: await convexAuthNextjsToken(),
-    },
-  );
+export default function AdminPage() {
+  const router = useRouter();
+  const square = useQuery(api.squares.getFirstSquare);
 
-  return (
-    <div>
-      <Heading preloadedSquare={preloadedSquare} />
-    </div>
-  );
+  useEffect(() => {
+    if (square === undefined) return; // loading
+    if (square === null) {
+      router.replace("/onboarding");
+      return;
+    }
+    router.replace(`/admin/${square._id}`);
+  }, [square, router]);
+
+  return null;
 }

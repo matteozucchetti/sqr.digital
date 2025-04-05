@@ -1,58 +1,53 @@
 "use client";
-
 import FieldInfo from "@/components/forms/field-info";
 import { Button } from "@/components/ui/button";
-import { Icons } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
 import { api } from "@/convex/_generated/api";
-import * as validators from "@/convex/validators";
-import { ERRORS } from "@/lib/config";
+import { render } from "@react-email/components";
 import { useForm } from "@tanstack/react-form";
-import { useMutation, useQuery } from "convex/react";
-import { useRouter } from "next/navigation";
+import { useAction } from "convex/react";
 import { z } from "zod";
+import ComingSoonSubscribedEmail from "../../emails/coming-soon-subscribed";
+import { Icons } from "./ui/icons";
 
 const formSchema = z.object({
-  squareName: validators.squareName,
+  email: z.string().email("Inserisci un indirizzo email valido"),
 });
 
-export default function Onboarding() {
-  const router = useRouter();
-  const user = useQuery(api.users.getUser);
-  const createSquare = useMutation(api.squares.createSquare);
+export function ComingSoon() {
+  const addToAudience = useAction(api.resend.addToAudience);
+  const sendEmail = useAction(api.resend.send);
 
   const form = useForm({
     defaultValues: {
-      squareName: "",
+      email: "",
     },
     validators: {
       onSubmit: formSchema,
     },
-    onSubmit: async ({ value, formApi }) => {
-      try {
-        const squareId = await createSquare({ name: value.squareName });
-        formApi.reset();
-        router.push(`/admin/${squareId}`);
-      } catch (error) {
-        if (error instanceof Error) {
-          formApi.setFieldMeta("squareName", (prev) => ({
-            ...prev,
-            errorMap: {
-              onChange: ERRORS.SQUARE_NAME_ALREADY_EXISTS,
-            },
-          }));
-        }
-      }
+    onSubmit: async ({ value }) => {
+      await addToAudience({ email: value.email });
+      form.reset();
+
+      const comingSoonSubscribedEmail = await render(
+        ComingSoonSubscribedEmail(),
+      );
+      await sendEmail({
+        to: value.email,
+        subject: "Iscrizione alla lista di attesa confermata!",
+        html: comingSoonSubscribedEmail,
+      });
     },
   });
 
-  if (!user) {
-    return null;
-  }
-
   return (
-    <div className="max-w-md w-full mx-auto">
-      <p>Onboarding - crea un nuovo Square</p>
+    <div className="max-w-md mx-auto py-12 flex flex-col gap-4">
+      <h1 className="text-2xl font-bold">Coming Soon</h1>
+      <p className="text-sm text-gray-500">
+        Siamo quasi pronti a lanciare il nostro prodotto. Ti invitiamo a
+        iscriverti alla lista d'attesa per essere il primo a sapere quando sarà
+        disponibile.
+      </p>
       <form
         className="flex flex-col gap-4"
         onSubmit={(e) => {
@@ -62,7 +57,7 @@ export default function Onboarding() {
         }}
       >
         <form.Field
-          name="squareName"
+          name="email"
           // biome-ignore lint/correctness/noChildrenProp: tanstack best practice
           children={(field) => (
             <div className="flex flex-col gap-2">
@@ -72,6 +67,7 @@ export default function Onboarding() {
                 value={field.state.value}
                 onBlur={field.handleBlur}
                 onChange={(e) => field.handleChange(e.target.value)}
+                placeholder="Inserisci il tuo indirizzo email"
               />
               <FieldInfo field={field} />
             </div>
@@ -86,7 +82,7 @@ export default function Onboarding() {
                 {isSubmitting ? (
                   <Icons.Loader className="animate-spin" />
                 ) : (
-                  "Continua"
+                  "Iscriviti alla lista d'attesa"
                 )}
               </Button>
             </>

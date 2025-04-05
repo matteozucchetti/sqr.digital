@@ -17,25 +17,25 @@ export default convexAuthNextjsMiddleware(async (request, { convexAuth }) => {
   }
 
   if (isLogin && isAuthenticated) {
-    console.log("redirecting to /", {
-      isLogin,
-      isAuthenticated,
-    });
+    // console.log("redirecting to /", {
+    //   isLogin,
+    //   isAuthenticated,
+    // });
     return nextjsMiddlewareRedirect(request, "/admin");
   }
 
   if (!isLogin && !isAuthenticated) {
-    console.log("redirecting to /login", {
-      isLogin,
-      isAuthenticated,
-    });
+    // console.log("redirecting to /login", {
+    //   isLogin,
+    //   isAuthenticated,
+    // });
     return nextjsMiddlewareRedirect(request, "/login");
   }
 
-  console.log("no redirect", {
-    isLogin,
-    isAuthenticated,
-  });
+  // console.log("no redirect", {
+  //   isLogin,
+  //   isAuthenticated,
+  // });
 });
 
 export const config = {

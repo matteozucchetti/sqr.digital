@@ -9,13 +9,10 @@ export function GoogleSignin() {
   return (
     <Button
       onClick={() =>
-        signIn("google", {
-          redirectTo: `${window.location.origin}/admin`,
-        })
+        signIn("google", { redirectTo: `${window.location.origin}/admin` })
       }
-      variant="outline"
     >
-      Sign in with Google
+      Login con Google
     </Button>
   );
 }

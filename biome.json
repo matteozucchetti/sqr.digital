@@ -15,14 +15,25 @@
         "noNonNullAssertion": "off"
       },
       "correctness": {
-        "useExhaustiveDependencies": "off"
+        "useExhaustiveDependencies": "off",
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error"
       },
       "complexity": {
         "noForEach": "off"
+      },
+      "suspicious": {
+        "noConsoleLog": "warn"
       }
     }
   },
   "formatter": {
     "indentStyle": "space"
+  },
+  "javascript": {
+    "formatter": {
+      "enabled": true,
+      "quoteStyle": "double"
+    }
   }
 }
