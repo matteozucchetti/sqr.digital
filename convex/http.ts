@@ -6,29 +6,18 @@ const http = httpRouter();
 
 auth.addHttpRoutes(http);
 
-polar.registerRoutes(http as any);
-
 polar.registerRoutes(http, {
   // Optional custom path, default is "/events/polar"
   path: "/events/polar",
   // Optional callbacks for webhook events
-  onSubscriptionUpdated: async (ctx, event) => {
-    // Handle subscription updates, like cancellations.
-    // Note that a cancelled subscription will not be deleted from the database,
-    // so this information remains available without a hook, eg., via
-    // `getCurrentSubscription()`.
-    if (event.data.customerCancellationReason) {
-      console.log("Customer cancelled:", event.data.customerCancellationReason);
+  onSubscriptionUpdated: async (_ctx, event) => {
+    console.log("Subscription updated", event);
+    if (event.data.productId === polar.products.singleMonthly) {
+      console.log("Single monthly subscription updated");
     }
-  },
-  onSubscriptionCreated: async (ctx, event) => {
-    // Handle new subscriptions
-  },
-  onProductCreated: async (ctx, event) => {
-    // Handle new products
-  },
-  onProductUpdated: async (ctx, event) => {
-    // Handle product updates
+    if (event.data.productId === polar.products.proMonthly) {
+      console.log("Pro monthly subscription updated");
+    }
   },
 });
 

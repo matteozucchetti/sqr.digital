@@ -1,5 +1,6 @@
 import { getAuthUserId } from "@convex-dev/auth/server";
 import { query } from "./_generated/server";
+import { polar } from "./polar";
 
 export const getUser = query({
   handler: async (ctx) => {
@@ -11,8 +12,16 @@ export const getUser = query({
     if (!user) {
       return;
     }
+    const subscription = await polar.getCurrentSubscription(ctx, {
+      userId: user._id,
+    });
     return {
       ...user,
+      subscription,
     };
   },
 });
+
+// export const updateUserPlan = mutation({
+//   // TODO: Implement this
+// });
