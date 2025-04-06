@@ -13,6 +13,7 @@ import { type Preloaded, usePreloadedQuery } from "convex/react";
 import { UserIcon } from "lucide-react";
 import Link from "next/link";
 import { SignOut } from "./auth/sign-out";
+import { Small } from "./typography";
 export function UserDropdown({
   preloadedUser,
   preloadedSquares,
@@ -53,6 +54,7 @@ export function UserDropdown({
         <DropdownMenuSeparator />
         <div className="flex flex-col gap-2 py-2">
           <SignOut />
+          <Small>Piano: {user?.plan}</Small>
         </div>
       </DropdownMenuContent>
     </DropdownMenu>
