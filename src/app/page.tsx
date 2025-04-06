@@ -23,8 +23,6 @@ export default async function Home() {
         <Navigation
           preloadedUser={preloadedUser}
           preloadedSquares={preloadedSquares}
-          // TODO: remove this once users can login
-          isAuthPage={true}
         />
       </header>
       <main className="row-start-2">

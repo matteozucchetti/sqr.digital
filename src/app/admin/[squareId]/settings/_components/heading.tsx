@@ -31,10 +31,10 @@ export function Heading({
       </Display1>
 
       <div className="grid grid-cols-2 gap-4 my-8">
-        <div className="relative aspect-square rounded-full overflow-hidden">
+        <div className="relative aspect-square rounded-lg overflow-hidden">
           <Image
-            src={square?.image || ""}
-            alt="Hotel Savoia"
+            src={square?.image || "/placeholders/image-placeholder.svg"}
+            alt={`Foto di ${square?.name}`}
             fill
             className="object-cover"
           />

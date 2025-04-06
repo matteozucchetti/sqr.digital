@@ -26,12 +26,12 @@ export function Heading({
       </Text>
 
       <div className="flex items-center gap-4 mt-8">
-        <div className="relative w-16 h-16 rounded-full overflow-hidden">
+        <div className="relative w-32">
           <Image
-            src={square?.logo || ""}
-            alt="Hotel Savoia"
-            fill
-            className="object-cover"
+            src={square?.logo || "/placeholders/logo-placeholder.svg"}
+            alt={`Logo di ${square?.name}`}
+            width={128}
+            height={128}
           />
         </div>
         <div>
