@@ -1,4 +1,4 @@
-import { Display2, Text } from "@/components/typography";
+import { Display2, Small, Text } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,9 +9,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import type { Doc } from "@/convex/_generated/dataModel";
 import { ArrowRight, DownloadIcon } from "lucide-react";
+import { QRCodeSVG } from "qrcode.react";
 
-export function QrCodeDialog() {
+export function QrCodeDialog({ square }: { square: Doc<"squares"> }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -34,6 +36,24 @@ export function QrCodeDialog() {
             </Button>
           </DialogDescription>
         </DialogHeader>
+
+        <div className="flex justify-center items-center my-4 rounded-lg border border-accent p-4 aspect-square">
+          <QRCodeSVG
+            value={`${process.env.NEXT_PUBLIC_APP_URL}/public/${square._id}`}
+            size={512}
+            fgColor="#000000"
+            bgColor="#FFFFFF"
+            marginSize={2}
+            className="w-full h-full"
+          />
+        </div>
+
+        <Small>
+          PNG è un formato immagine che puoi utilizzare nella maggior parte dei
+          programmi (ad esempio Word). SVG è il formato vettoriale, utile se
+          vuoi darlo ad un grafico o tipografia per utilizzi avanzati (es.
+          incisione su legno).
+        </Small>
 
         <DialogFooter className="grid grid-cols-2 gap-2">
           <Button>

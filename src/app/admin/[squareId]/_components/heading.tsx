@@ -4,10 +4,12 @@ import { Display1, Display2, Text } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import type { api } from "@/convex/_generated/api";
+import type { Doc } from "@/convex/_generated/dataModel";
 import { type Preloaded, usePreloadedQuery } from "convex/react";
 import Image from "next/image";
 import Link from "next/link";
 import { QrCodeDialog } from "./qr-code-dialog";
+
 export function Heading({
   preloadedSquare,
 }: {
@@ -46,7 +48,7 @@ export function Heading({
 
       <Separator className="bg-[#5A5A5A]" />
 
-      <QrCodeDialog />
+      <QrCodeDialog square={square as Doc<"squares">} />
     </div>
   );
 }
