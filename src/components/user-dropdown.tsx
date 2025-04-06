@@ -38,7 +38,7 @@ export function UserDropdown({
               key={square._id}
               variant="link"
               asChild
-              className="justify-start text-foreground"
+              className="justify-start text-foreground text-sm"
             >
               <Link href={`/admin/${square._id}`}>{square.name}</Link>
             </Button>
@@ -46,7 +46,7 @@ export function UserDropdown({
         </div>
         <DropdownMenuSeparator />
         <div className="flex flex-col gap-2 py-2">
-          <Button variant="link" asChild className="justify-start">
+          <Button variant="link" asChild className="justify-start text-sm">
             <Link href="/onboarding">Crea un nuovo Square</Link>
           </Button>
         </div>
