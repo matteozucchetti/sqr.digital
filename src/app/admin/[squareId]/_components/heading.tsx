@@ -48,7 +48,13 @@ export function Heading({
 
       <Separator className="bg-[#5A5A5A]" />
 
-      <QrCodeDialog square={square as Doc<"squares">} />
+      <div className="flex flex-col items-center gap-4">
+        <QrCodeDialog square={square as Doc<"squares">} />
+
+        <Button variant="link">
+          <Link href={`/square/${square?._id}`}>Vai alla pagina pubblica</Link>
+        </Button>
+      </div>
     </div>
   );
 }

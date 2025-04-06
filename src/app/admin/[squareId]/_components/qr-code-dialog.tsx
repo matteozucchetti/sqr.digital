@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import type { Doc } from "@/convex/_generated/dataModel";
 import { ArrowRight, DownloadIcon } from "lucide-react";
+import Link from "next/link";
 import { QRCodeSVG } from "qrcode.react";
 
 export function QrCodeDialog({ square }: { square: Doc<"squares"> }) {
@@ -38,14 +39,16 @@ export function QrCodeDialog({ square }: { square: Doc<"squares"> }) {
         </DialogHeader>
 
         <div className="flex justify-center items-center my-4 rounded-lg border border-accent p-4 aspect-square">
-          <QRCodeSVG
-            value={`${process.env.NEXT_PUBLIC_APP_URL}/public/${square._id}`}
-            size={512}
-            fgColor="#000000"
-            bgColor="#FFFFFF"
-            marginSize={2}
-            className="w-full h-full"
-          />
+          <Link href={`/square/${square._id}`}>
+            <QRCodeSVG
+              value={`${process.env.NEXT_PUBLIC_APP_URL}/square/${square._id}`}
+              size={512}
+              fgColor="#000000"
+              bgColor="#FFFFFF"
+              marginSize={2}
+              className="w-full h-full"
+            />
+          </Link>
         </div>
 
         <Small>
