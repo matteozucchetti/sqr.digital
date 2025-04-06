@@ -1,14 +1,15 @@
 "use client";
 import FieldInfo from "@/components/forms/field-info";
 import { Button } from "@/components/ui/button";
+import { Icons } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
 import { api } from "@/convex/_generated/api";
 import { render } from "@react-email/components";
 import { useForm } from "@tanstack/react-form";
 import { useAction } from "convex/react";
+import { toast } from "sonner";
 import { z } from "zod";
 import ComingSoonSubscribedEmail from "../../emails/coming-soon-subscribed";
-import { Icons } from "./ui/icons";
 
 const formSchema = z.object({
   email: z.string().email("Inserisci un indirizzo email valido"),
@@ -28,6 +29,8 @@ export function ComingSoon() {
     onSubmit: async ({ value }) => {
       await addToAudience({ email: value.email });
       form.reset();
+
+      toast.success("Ti sei iscritto alla lista d'attesa");
 
       const comingSoonSubscribedEmail = await render(
         ComingSoonSubscribedEmail(),
