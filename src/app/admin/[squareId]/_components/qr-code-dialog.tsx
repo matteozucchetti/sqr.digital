@@ -47,6 +47,12 @@ export function QrCodeDialog({ square }: { square: Doc<"squares"> }) {
               bgColor="#FFFFFF"
               marginSize={2}
               className="w-full h-full"
+              imageSettings={{
+                src: "/logos/q-logo-green.svg",
+                width: 100,
+                height: 100,
+                excavate: true,
+              }}
             />
           </Link>
         </div>
