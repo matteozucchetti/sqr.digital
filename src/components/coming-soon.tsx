@@ -10,6 +10,7 @@ import { useAction } from "convex/react";
 import { toast } from "sonner";
 import { z } from "zod";
 import ComingSoonSubscribedEmail from "../../emails/coming-soon-subscribed";
+import { Display1, Text } from "./typography";
 
 const formSchema = z.object({
   email: z.string().email("Inserisci un indirizzo email valido"),
@@ -45,12 +46,12 @@ export function ComingSoon() {
 
   return (
     <div className="max-w-md mx-auto py-12 flex flex-col gap-4">
-      <h1 className="text-2xl font-bold">Coming Soon</h1>
-      <p className="text-sm text-gray-500">
+      <Display1 as="h1">Coming Soon</Display1>
+      <Text>
         Siamo quasi pronti a lanciare il nostro prodotto. Ti invitiamo a
         iscriverti alla lista d'attesa per essere il primo a sapere quando sarà
         disponibile.
-      </p>
+      </Text>
       <form
         className="flex flex-col gap-4"
         onSubmit={(e) => {

@@ -20,21 +20,9 @@ export const polar = new Polar(components.polar, {
       email: user.email,
     };
   },
-  // Optional: Configure static keys for referencing your products.
-  // Alternatively you can use the `listAllProducts` function to get
-  // the product data and sort it out in your UI however you like
-  // (eg., by price, name, recurrence, etc.).
-  // Map your product keys to Polar product IDs (you can also use env vars for this)
-  // Replace these keys with whatever is useful for your app (eg., "pro", "proMonthly",
-  // whatever you want), and replace the values with the actual product IDs from your
-  // Polar dashboard
-  products: {
-    singleMonthly: "1253a987-7a44-426d-8bdd-83460ca8cc68",
-    proMonthly: "68184f63-fff5-4616-9eaf-36b1cadf690b",
-  },
   // Optional: Set Polar configuration directly in code
-  organizationToken: process.env.POLAR_ORGANIZATION_TOKEN!, // Defaults to POLAR_ORGANIZATION_TOKEN env var
-  webhookSecret: process.env.POLAR_WEBHOOK_SECRET!, // Defaults to POLAR_WEBHOOK_SECRET env var
+  // organizationToken: "polar_oat_fQj79hJIckT9gvuSAVKlyU9bTd1fbXdARvm9S14Syaj", // Defaults to POLAR_ORGANIZATION_TOKEN env var
+  // webhookSecret: "4e26b7011482481c943e5044faf706a4", // Defaults to POLAR_WEBHOOK_SECRET env var
   server: "sandbox", // Optional: "sandbox" or "production", defaults to POLAR_SERVER env var
 });
 
