@@ -7,12 +7,7 @@
 - **UI Components**:
   - shadcn/ui (Radix UI based component library)
   - TailwindCSS for styling
-- **Form Handling**: Likely to use react-hook-form with zod validation
-- **State Management**:
-  - React Server Components for server state
-  - React hooks for client state
-  - nuqs for URL search parameter state management
-- **Themes**: next-themes for light/dark mode
+- **Form Handling**: Tanstack Form with zod
 - **File Upload**: Convex file storage
 
 ### Backend
@@ -20,16 +15,14 @@
 - **Authentication**: Google authentication via Convex auth
 - **File Storage**: Convex storage
 - **Email**: Resend for email delivery
-- **Analytics**: OpenPanel for usage tracking
-- **Billing**: Polar for subscription management
-- **Forms**: Loops for newsletter subscriptions
+- **Analytics**: Posthog
+- **Billing**: Autumn for subscription management
+- **Leads**: Resend for newsletter subscriptions
 
 ### Build Tools
-- **Package Manager**: Bun
-- **Monorepo**: Turborepo
+- **Package Manager**: pnpm
 - **TypeScript**: For type safety
 - **Linting**: Biome
-- **Error Tracking**: Sentry
 
 ## Dependencies
 Key dependencies from the V1 starter kit:
@@ -38,12 +31,10 @@ Key dependencies from the V1 starter kit:
 - TailwindCSS
 - shadcn/ui and Radix UI
 - TypeScript
-- Bun
-- Turborepo
 - Auth (Google)
 - Resend
-- OpenPanel
-- Polar
+- Posthog
+- Autumn
 
 ## Technical Constraints
 
@@ -61,9 +52,8 @@ Key dependencies from the V1 starter kit:
   - Convex deployment
   - Google authentication
   - Resend API keys
-  - Polar organization token
-  - OpenPanel API keys
-  - Loops form ID (if used)
+  - Autumn organization token
+  - Posthog API keys
 
 ## Integration Points
 
@@ -72,11 +62,11 @@ Key dependencies from the V1 starter kit:
 - React Email for email templates
 
 ### Billing
-- Polar for subscription management
+- Autumn for subscription management
 - Webhook integration for subscription events
 
 ### Analytics
-- OpenPanel for usage tracking and analytics
+- Posthog for usage tracking and analytics
 
 ## Deployment
 - Configured for Vercel deployment

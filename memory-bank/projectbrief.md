@@ -26,7 +26,7 @@ Square is a digital platform that allows users to create and manage their own di
 - Built with a modern Next.js/React stack
 - Backend using Convex for data storage, API, and authentication
 - Styled with TailwindCSS and shadcn/ui components
-- Multiple integrations for comprehensive functionality (Resend, Polar, etc.)
+- Multiple integrations for comprehensive functionality (Resend, Autumn, etc.)
 - Monorepo structure with Turborepo
 
 This project is using the V1 starter template from Convex as its foundation, providing a solid and scalable architecture from the start.

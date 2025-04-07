@@ -14,7 +14,7 @@ The implementation is starting from the V1 template which provides:
 - User authentication with Google
 - File storage capabilities
 - UI components from shadcn
-- Various integrations (Resend for email, Polar for billing, etc.)
+- Various integrations (Resend for email, Autumn for billing, etc.)
 
 ### Key Areas for Development
 1. **Data Model**: Implementing the Square entity structure
@@ -38,6 +38,6 @@ The implementation is starting from the V1 template which provides:
 ## Considerations
 - Multiple accommodations per user based on pricing plan
 - Integration with external services like Resend for notifications
-- Potential use of Polar for subscription management
+- Potential use of Autumn for subscription management
 - Analytics tracking with OpenPanel
 - Forms with Loops for newsletter subscriptions

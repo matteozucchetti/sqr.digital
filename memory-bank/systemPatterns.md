@@ -8,16 +8,6 @@ Square follows a modern web application architecture based on the V1 starter kit
 Client (Next.js) ↔ Convex Backend ↔ Database
 ```
 
-### Monorepo Structure
-The project uses a Turborepo monorepo with multiple packages:
-- **apps/web**: Marketing site
-- **apps/app**: Main application
-- **packages/backend**: Convex backend (API, database, auth)
-- **packages/ui**: Shared UI components
-- **packages/email**: Email templates
-- **packages/analytics**: Analytics integration
-- **packages/logger**: Logging functionality
-
 ### Frontend Architecture
 - **Framework**: Next.js with App Router
 - **Component Structure**:
@@ -31,8 +21,8 @@ The project uses a Turborepo monorepo with multiple packages:
 - **Authentication**: Convex auth with Google
 - **File Storage**: Convex storage for file uploads (logos)
 - **Email**: Resend for email delivery
-- **Billing**: Polar for subscription management
-- **Analytics**: OpenPanel for usage tracking
+- **Billing**: Autumn for subscription management
+- **Analytics**: Posthog for usage tracking
 
 ## Key Design Patterns
 

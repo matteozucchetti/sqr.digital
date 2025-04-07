@@ -42,7 +42,7 @@
 
 ### Subscription Management
 - 🔲 Subscription tiers definition
-- 🔲 Integration with Polar for billing
+- 🔲 Integration with Autumn for billing
 - 🔲 Feature access based on subscription
 
 ## Current Status
