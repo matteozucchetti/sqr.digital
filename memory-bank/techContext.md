@@ -113,8 +113,6 @@
 1. **Hosting**
    - Vercel (Frontend)
    - Convex Cloud (Backend)
-   - Edge Network
-   - Global CDN
 
 2. **Monitoring**
    - Error Tracking
