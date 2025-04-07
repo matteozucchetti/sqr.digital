@@ -1,34 +1,131 @@
 # Product Context
 
 ## Problem Statement
-Small businesses and locations often struggle with maintaining an online presence across multiple platforms. They need a centralized way to share essential information like address, opening hours, social links, and nearby points of interest with customers. This project aims to digitalize all the tourism/facility information through a public page with a scannable QR code. Each user will create as many accommodations as they like, and fill all the info to be visible when public customers scan the QR code. Each accommodation is a "square".
+In the hospitality industry, providing guests with essential information about their accommodation and surroundings traditionally relies on physical materials like welcome folders, printed guides, and paper documents. This approach has several drawbacks:
 
-## User Needs
-- **Business Owners**: Need a simple way to create and manage their digital presence without complex website building
-- **Customers**: Want easy access to business information including location, hours, and relevant nearby places by scanning a QR code (unique for each accommodation url).
+1. **Environmental Impact**: Constant printing and updating of materials
+2. **Maintenance Overhead**: Regular updates and replacements needed
+3. **Information Accessibility**: Physical materials can be misplaced or damaged
+4. **Update Limitations**: Changes require reprinting and physical distribution
+5. **Language Barriers**: Multiple language versions increase complexity
 
 ## Solution
-Square provides a simple, focused platform for creating a digital business card or location profile that can be easily shared. It consolidates essential information in one place with:
-- Visual identity (logo)
-- Contact information
-- Bio/description
-- Location information with links to Google Maps
-- Operating hours
-- Social media presence
-- Relevant nearby places (restaurants, supermarkets)
-- Additional features planned for future iterations
+Square transforms this experience by providing a digital platform that:
+
+1. **Centralizes Information**
+   - All property information in one digital location
+   - Easy updates and modifications
+   - Real-time content management
+
+2. **Simplifies Access**
+   - One QR code provides all necessary information
+   - No app downloads required
+   - Instant access on any mobile device
+
+3. **Enhances Guest Experience**
+   - Always up-to-date information
+   - Interactive and searchable content
+   - Multimedia integration possibilities
+   - Potential for multiple language support
 
 ## User Experience Goals
-- **Simplicity**: Make profile creation and management straightforward
-- **Shareability**: Create easily shareable profiles/pages
-- **Completeness**: Include all essential business information in one place
-- **Administrative Control**: Provide a clean admin interface for profile management
 
-## Market Position
-Square positions itself as a simpler alternative to full websites or complex business listings. It focuses on essential information sharing rather than complex e-commerce or reservation capabilities.
+### For Property Owners
+1. **Effortless Management**
+   - Simple dashboard interface
+   - Quick content updates
+   - Easy QR code generation
+   - Basic analytics and insights
+
+2. **Professional Presentation**
+   - Clean, modern design
+   - Customizable branding
+   - Professional appearance
+   - Consistent information delivery
+
+3. **Operational Efficiency**
+   - Reduced printing costs
+   - Time savings on updates
+   - Decreased environmental impact
+   - Streamlined information management
+
+### For Guests
+1. **Instant Access**
+   - Quick QR code scanning
+   - Immediate information availability
+   - No app installation needed
+   - Works on any mobile device
+
+2. **Clear Information**
+   - Well-organized content
+   - Easy navigation
+   - Search functionality
+   - Important details highlighted
+
+3. **Enhanced Stay**
+   - Local recommendations
+   - Useful property information
+   - Emergency contacts
+   - House rules and guidelines
 
 ## Key Differentiators
-- Focused specifically on location-based businesses that act as hosts (hotels, b&bs, holiday houses)
-- Simplified information management
-- Related places listings (creating a small ecosystem of nearby businesses)
-- Scalable approach - users can create multiple accommodations based on their pricing plan
+1. **Simplicity First**
+   - Focus on essential features
+   - Clean, intuitive interface
+   - Quick setup process
+   - Minimal learning curve
+
+2. **Hospitality Focused**
+   - Designed for accommodation providers
+   - Industry-specific features
+   - Relevant content organization
+   - Guest-centric approach
+
+3. **Digital Transformation**
+   - Modern solution to traditional problem
+   - Environmentally conscious
+   - Future-proof platform
+   - Scalable architecture
+
+## Success Indicators
+
+### Quantitative Metrics
+1. **Usage Statistics**
+   - QR code scans
+   - Time spent on information pages
+   - Number of active properties
+   - Update frequency
+
+2. **Business Impact**
+   - Cost savings on printing
+   - Time saved on updates
+   - Number of guests served
+   - Property satisfaction rates
+
+### Qualitative Feedback
+1. **Property Owner Experience**
+   - Ease of use
+   - Time savings
+   - Professional appearance
+   - Value for money
+
+2. **Guest Experience**
+   - Information accessibility
+   - Content clarity
+   - Navigation ease
+   - Overall satisfaction
+
+## Future Opportunities
+1. **Feature Expansion**
+   - Multi-language support
+   - Integration with PMS systems
+   - Guest feedback collection
+   - Advanced analytics
+
+2. **Market Growth**
+   - Geographic expansion
+   - Property type diversification
+   - Partnership opportunities
+   - Additional service offerings
+
+This context document guides product decisions and ensures alignment with user needs and business goals.

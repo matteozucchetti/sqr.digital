@@ -2,72 +2,221 @@
 
 ## Technology Stack
 
-### Frontend
-- **Framework**: Next.js with App Router
-- **UI Components**:
-  - shadcn/ui (Radix UI based component library)
-  - TailwindCSS for styling
-- **Form Handling**: Tanstack Form with zod
-- **File Upload**: Convex file storage
+### Frontend Technologies
+1. **Core Framework**
+   - Next.js 14
+   - React Server Components
+   - TypeScript
+   - App Router
 
-### Backend
-- **Database/API**: Convex (serverless backend)
-- **Authentication**: Google authentication via Convex auth
-- **File Storage**: Convex storage
-- **Email**: Resend for email delivery
-- **Analytics**: Posthog
-- **Billing**: Autumn for subscription management
-- **Leads**: Resend for newsletter subscriptions
+2. **UI Framework**
+   - Tailwind CSS
+   - Shadcn UI
+   - Radix UI Primitives
+   - Lucide Icons
 
-### Build Tools
-- **Package Manager**: pnpm
-- **TypeScript**: For type safety
-- **Linting**: Biome
+3. **State Management**
+   - React Context
+   - React Query
+   - Form State (react-hook-form)
+   - URL State (nuqs)
 
-## Dependencies
-Key dependencies from the V1 starter kit:
-- Next.js
-- Convex
-- TailwindCSS
-- shadcn/ui and Radix UI
-- TypeScript
-- Auth (Google)
-- Resend
-- Posthog
-- Autumn
+### Backend Technologies
+1. **Database & API**
+   - Convex (Real-time Database)
+   - Edge Functions
+   - WebSocket Protocol
+   - HTTP Endpoints
 
-## Technical Constraints
+2. **Authentication**
+   - OAuth (Google)
+   - JWT Tokens
+   - Session Management
+   - RBAC (Role-Based Access Control)
+
+3. **File Storage**
+   - Convex File Storage
+   - Image Optimization
+   - Asset Delivery
+   - CDN Integration
+
+## Development Environment
+
+### Required Tools
+1. **Core Tools**
+   - Node.js (v18+)
+   - pnpm (Package Manager)
+   - Git
+   - VS Code
+
+2. **Extensions**
+   - ESLint
+   - Prettier
+   - TypeScript
+   - Tailwind CSS IntelliSense
+
+3. **Environment Variables**
+   ```env
+   NEXT_PUBLIC_CONVEX_URL=
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+   CLERK_SECRET_KEY=
+   RESEND_API_KEY=
+   ```
+
+## Development Workflow
+
+### Local Setup
+1. **Installation**
+   ```bash
+   git clone <repository>
+   cd square
+   pnpm install
+   pnpm dev
+   ```
+
+2. **Development Scripts**
+   ```json
+   {
+     "dev": "next dev",
+     "build": "next build",
+     "start": "next start",
+     "lint": "next lint",
+     "format": "prettier --write ."
+   }
+   ```
+
+### Code Organization
+1. **Directory Structure**
+   ```
+   /
+   ├── src/
+   │   ├── app/          # Next.js routes
+   │   ├── components/   # React components
+   │   └── lib/          # Shared utilities
+   ├── convex/          # Backend logic
+   ├── public/          # Static assets
+   └── emails/          # Email templates
+   ```
+
+2. **Component Organization**
+   ```
+   components/
+   ├── ui/             # Shadcn UI components
+   ├── forms/          # Form components
+   ├── layouts/        # Layout components
+   └── features/       # Feature components
+   ```
+
+## Deployment Architecture
+
+### Production Environment
+1. **Hosting**
+   - Vercel (Frontend)
+   - Convex Cloud (Backend)
+   - Edge Network
+   - Global CDN
+
+2. **Monitoring**
+   - Error Tracking
+   - Performance Monitoring
+   - Usage Analytics
+   - Status Checks
+
+### CI/CD Pipeline
+1. **GitHub Actions**
+   - Type Checking
+   - Linting
+   - Testing
+   - Build Verification
+
+2. **Deployment Process**
+   - Branch Protection
+   - Preview Deployments
+   - Production Deployments
+   - Rollback Capability
+
+## Security Considerations
 
 ### Authentication
-- Relies on Google authentication via Convex auth
-- User management through Convex schema
+1. **User Authentication**
+   - OAuth Flow
+   - Session Management
+   - Token Handling
+   - Security Headers
 
-### File Storage
-- Logo images stored in Convex storage
-- Upload URL generation required for file uploads
+2. **Authorization**
+   - Role-Based Access
+   - Permission System
+   - API Protection
+   - Rate Limiting
 
-### Development Environment
-- Bun required for package management
-- Environment variables needed for various integrations:
-  - Convex deployment
-  - Google authentication
-  - Resend API keys
-  - Autumn organization token
-  - Posthog API keys
+### Data Security
+1. **Data Protection**
+   - Encryption at Rest
+   - Secure Transmission
+   - Input Validation
+   - Output Sanitization
 
-## Integration Points
+2. **Compliance**
+   - GDPR Compliance
+   - Data Privacy
+   - Cookie Policies
+   - Terms of Service
 
-### Email
-- Resend for email delivery
-- React Email for email templates
+## Performance Optimization
 
-### Billing
-- Autumn for subscription management
-- Webhook integration for subscription events
+### Frontend Performance
+1. **Loading Speed**
+   - Code Splitting
+   - Image Optimization
+   - Font Loading
+   - Asset Minification
 
-### Analytics
-- Posthog for usage tracking and analytics
+2. **Runtime Performance**
+   - React Optimization
+   - Bundle Size Control
+   - Memory Management
+   - Animation Performance
 
-## Deployment
-- Configured for Vercel deployment
-- Environment configuration through environment variables
+### Backend Performance
+1. **Database**
+   - Query Optimization
+   - Index Management
+   - Cache Strategy
+   - Connection Pooling
+
+2. **API Performance**
+   - Response Time
+   - Payload Size
+   - Rate Limiting
+   - Error Handling
+
+## Development Guidelines
+
+### Code Standards
+1. **TypeScript**
+   - Strict Mode
+   - Type Safety
+   - Interface Design
+   - Error Handling
+
+2. **React Patterns**
+   - Functional Components
+   - Custom Hooks
+   - Error Boundaries
+   - Performance Patterns
+
+### Testing Strategy
+1. **Test Types**
+   - Unit Tests
+   - Integration Tests
+   - E2E Tests
+   - Performance Tests
+
+2. **Testing Tools**
+   - Jest
+   - React Testing Library
+   - Cypress
+   - Lighthouse
+
+This technical context document serves as a reference for development decisions and should be updated as the technical stack evolves.

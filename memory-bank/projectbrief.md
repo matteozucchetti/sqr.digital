@@ -1,32 +1,105 @@
-# Square Project Brief
+# Project Brief: Square Digital Service
 
 ## Overview
-Square is a digital platform that allows users to create and manage their own digital "square" - a profile or business page containing information about a location or business. The platform focuses on providing a way for users to share information about places, including details like address, opening hours, social media links, nearby restaurants, and supermarkets.
+Square is a digital service designed to modernize and streamline the guest experience for hospitality businesses (B&Bs, hotels, and vacation rentals) by replacing traditional paper-based information systems with a dynamic, QR code-based digital solution.
 
-## Core Requirements
+## Core Value Proposition
+- Eliminate the need for physical information materials in hospitality settings
+- Provide instant access to essential information through QR codes
+- Simplify information management for property owners
+- Enhance guest experience through digital convenience
 
-1. User authentication system
-2. Profile creation and management for businesses/locations
-3. Logo upload and management capabilities
-4. Business information management (bio, address, check-in/out times)
-5. Social media links management
-6. Related places listings (restaurants, supermarkets)
-7. Admin interface for managing all aspects of a "square"
-8. Sharing functionality for public viewing
+## Primary Features
+1. **QR Code Generation**
+   - Custom QR codes for each property/room
+   - Branded and visually appealing design
+   - Easy placement in strategic locations
 
-## Goals
+2. **Digital Information Hub**
+   - Property details and rules
+   - WiFi credentials
+   - Check-in/out procedures
+   - Local recommendations
+   - House rules and guidelines
 
-- Provide a simple yet comprehensive platform for businesses to create their digital presence
-- Enable easy management of business information
-- Allow for public sharing of business profiles
-- Support integration with location services via direct link to Google Maps
+3. **Property Management Dashboard**
+   - Information management interface
+   - QR code customization
+   - Content updates and organization
+   - Analytics and insights
 
-## Technical Approach
+4. **Guest Access**
+   - No app installation required
+   - Instant web-based access
+   - Mobile-optimized interface
+   - Multi-language support
 
-- Built with a modern Next.js/React stack
-- Backend using Convex for data storage, API, and authentication
-- Styled with TailwindCSS and shadcn/ui components
-- Multiple integrations for comprehensive functionality (Resend, Autumn, etc.)
-- Monorepo structure with Turborepo
+## Target Users
 
-This project is using the V1 starter template from Convex as its foundation, providing a solid and scalable architecture from the start.
+### Primary: Property Owners/Managers
+- B&B owners
+- Hotel managers
+- Vacation rental hosts
+- Property management companies
+
+### Secondary: Guests
+- Hotel guests
+- B&B visitors
+- Vacation rental occupants
+
+## Success Metrics
+1. **Adoption Metrics**
+   - Number of active properties
+   - QR code scan rate
+   - User engagement time
+
+2. **Business Impact**
+   - Reduction in printing costs
+   - Time saved in information management
+   - Guest satisfaction scores
+
+3. **Technical Performance**
+   - Page load times
+   - System uptime
+   - QR code reliability
+
+## Project Scope
+
+### Phase 1: MVP (Current)
+- Basic property profile creation
+- QR code generation
+- Essential information management
+- Simple guest interface
+
+### Phase 2: Enhancement
+- Advanced analytics
+- Multi-language support
+- Integration with property management systems
+- Custom branding options
+
+### Phase 3: Scale
+- Mobile app for property managers
+- Guest feedback system
+- Local business partnerships
+- Advanced customization features
+
+## Non-Goals
+- Direct booking functionality
+- Payment processing
+- Guest communication platform
+- Property listing marketplace
+
+## Technical Requirements
+- Mobile-first web application
+- Fast loading times
+- Offline capability
+- Secure data handling
+- Easy integration capabilities
+
+## Business Requirements
+- Scalable pricing model
+- Self-service onboarding
+- Minimal support requirements
+- Clear value proposition
+
+This brief serves as the foundation for all project decisions and development efforts. Updates to this document should be made only when core project goals or requirements change significantly.
