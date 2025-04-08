@@ -25,6 +25,11 @@ export const isPlanGreaterOrEqual = (userPlan: Plan, plan: Plan) => {
   return plansHierarchy[userPlan] >= plansHierarchy[plan];
 };
 
+export const INTERVALS = {
+  MONTH: "month",
+  YEAR: "year",
+} as const;
+
 // THEMES
 
 export type Theme = "default" | "red" | "blue" | "gold";

@@ -1,3 +1,4 @@
+import { INTERVALS, PLANS, THEMES } from "@/lib/config";
 import { authTables } from "@convex-dev/auth/server";
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
@@ -38,11 +39,24 @@ const Place = v.object({
 const Places = v.optional(v.array(Place));
 
 const Theme = v.union(
-  v.literal("gold"),
-  v.literal("red"),
-  v.literal("blue"),
-  v.literal("default"),
+  v.literal(THEMES.GOLD),
+  v.literal(THEMES.BLUE),
+  v.literal(THEMES.RED),
+  v.literal(THEMES.DEFAULT),
 );
+
+const Plans = v.union(
+  v.literal(PLANS.FREE),
+  v.literal(PLANS.SINGLE),
+  v.literal(PLANS.PRO),
+);
+
+const Price = v.object({
+  stripeId: v.string(),
+  amount: v.number(),
+});
+
+const Interval = v.union(v.literal(INTERVALS.MONTH), v.literal(INTERVALS.YEAR));
 
 export default defineSchema({
   ...authTables,
@@ -58,6 +72,34 @@ export default defineSchema({
 
     plan: Plan,
   }).index("email", ["email"]),
+
+  plans: defineTable({
+    key: Plans,
+    stripeId: v.string(),
+    name: v.string(),
+    description: v.string(),
+    prices: v.object({
+      [INTERVALS.MONTH]: Price,
+      [INTERVALS.YEAR]: Price,
+    }),
+  })
+    .index("key", ["key"])
+    .index("stripeId", ["stripeId"]),
+
+  subscriptions: defineTable({
+    userId: v.id("users"),
+    planId: v.id("plans"),
+    priceStripeId: v.string(),
+    stripeId: v.string(),
+    currency: v.string(),
+    interval: Interval,
+    status: v.string(),
+    currentPeriodStart: v.number(),
+    currentPeriodEnd: v.number(),
+    cancelAtPeriodEnd: v.boolean(),
+  })
+    .index("userId", ["userId"])
+    .index("stripeId", ["stripeId"]),
 
   squares: defineTable({
     name: v.string(),
