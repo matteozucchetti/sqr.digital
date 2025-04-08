@@ -3,6 +3,8 @@
 export const ERRORS = {
   SQUARE_NAME_ALREADY_EXISTS:
     "Esiste già uno Square con questo nome, scegline un altro",
+  STRIPE_CUSTOMER_NOT_CREATED: "Errore nella creazione del cliente Stripe",
+  STRIPE_SOMETHING_WENT_WRONG: "Qualcosa è andato storto",
 } as const;
 
 // PLANS
@@ -28,6 +30,11 @@ export const isPlanGreaterOrEqual = (userPlan: Plan, plan: Plan) => {
 export const INTERVALS = {
   MONTH: "month",
   YEAR: "year",
+} as const;
+
+export const CURRENCIES = {
+  USD: "usd",
+  EUR: "eur",
 } as const;
 
 // THEMES

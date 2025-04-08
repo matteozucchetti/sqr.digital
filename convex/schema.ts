@@ -1,4 +1,4 @@
-import { INTERVALS, PLANS, THEMES } from "@/lib/config";
+import { CURRENCIES, INTERVALS, PLANS, THEMES } from "@/lib/config";
 import { authTables } from "@convex-dev/auth/server";
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
@@ -56,7 +56,15 @@ const Price = v.object({
   amount: v.number(),
 });
 
-const Interval = v.union(v.literal(INTERVALS.MONTH), v.literal(INTERVALS.YEAR));
+export const Interval = v.union(
+  v.literal(INTERVALS.MONTH),
+  v.literal(INTERVALS.YEAR),
+);
+
+export const Currency = v.union(
+  v.literal(CURRENCIES.EUR),
+  v.literal(CURRENCIES.USD),
+);
 
 export default defineSchema({
   ...authTables,
@@ -69,9 +77,12 @@ export default defineSchema({
     phone: v.optional(v.string()),
     phoneVerificationTime: v.optional(v.number()),
     isAnonymous: v.optional(v.boolean()),
+    customerId: v.optional(v.string()),
 
     plan: Plan,
-  }).index("email", ["email"]),
+  })
+    .index("email", ["email"])
+    .index("customerId", ["customerId"]),
 
   plans: defineTable({
     key: Plans,
@@ -91,7 +102,7 @@ export default defineSchema({
     planId: v.id("plans"),
     priceStripeId: v.string(),
     stripeId: v.string(),
-    currency: v.string(),
+    currency: Currency,
     interval: Interval,
     status: v.string(),
     currentPeriodStart: v.number(),
