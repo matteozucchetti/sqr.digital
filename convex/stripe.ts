@@ -323,8 +323,8 @@ export const createSubscriptionCheckout = action({
     if (!currentSubscription?.plan) {
       throw new Error(ERRORS.STRIPE_SOMETHING_WENT_WRONG);
     }
-    if (currentSubscription.plan.key !== PLANS.FREE) {
-      return;
+    if (currentSubscription.plan._id === args.planId) {
+      throw new Error(ERRORS.STRIPE_CANNOT_PROCESS_CURRENT_PLAN);
     }
 
     const price = newPlan?.prices[args.planInterval][args.currency];
@@ -334,8 +334,8 @@ export const createSubscriptionCheckout = action({
       line_items: [{ price: price?.stripeId, quantity: 1 }],
       mode: "subscription",
       payment_method_types: ["card"],
-      success_url: `${process.env.SITE_URL}/dashboard/checkout`,
-      cancel_url: `${process.env.SITE_URL}/dashboard/settings/billing`,
+      success_url: "http://localhost:3000/checkout",
+      cancel_url: "http://localhost:3000/upgrade",
     });
     if (!checkout) {
       throw new Error(ERRORS.STRIPE_SOMETHING_WENT_WRONG);

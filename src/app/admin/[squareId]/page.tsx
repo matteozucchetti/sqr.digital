@@ -18,6 +18,10 @@ export default async function Admin({
     { token: await convexAuthNextjsToken() },
   );
 
+  if (!preloadedSquare) {
+    return <div>Square non trovato</div>;
+  }
+
   return (
     <>
       <Heading preloadedSquare={preloadedSquare} />

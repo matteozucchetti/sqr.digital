@@ -8,6 +8,8 @@ export const ERRORS = {
   ENVS_NOT_INITIALIZED: "Le variabili d'ambiente non sono state inizializzate",
   STRIPE_MISSING_SIGNATURE: "Stripe signature mancante",
   SOMETHING_WENT_WRONG: "Qualcosa è andato storto",
+  STRIPE_CANNOT_PROCESS_CURRENT_PLAN:
+    "Non puoi ri-abbonarti al tuo piano attuale",
 } as const;
 
 // PLANS

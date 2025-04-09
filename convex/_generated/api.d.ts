@@ -16,6 +16,7 @@ import type {
 import type * as auth from "../auth.js";
 import type * as http from "../http.js";
 import type * as init from "../init.js";
+import type * as plans from "../plans.js";
 import type * as resend from "../resend.js";
 import type * as squares from "../squares.js";
 import type * as stripe from "../stripe.js";
@@ -34,6 +35,7 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   http: typeof http;
   init: typeof init;
+  plans: typeof plans;
   resend: typeof resend;
   squares: typeof squares;
   stripe: typeof stripe;

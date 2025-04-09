@@ -78,13 +78,13 @@ export const createSquare = mutation({
     }
 
     await checkDuplicateSquareName(ctx, args.name);
-    await ctx.db.insert("squares", {
+    const square = await ctx.db.insert("squares", {
       name: args.name,
       userId,
       theme: THEMES.DEFAULT,
     });
     if (user.customerId) {
-      return;
+      return square;
     }
     await ctx.scheduler.runAfter(
       0,
@@ -94,6 +94,7 @@ export const createSquare = mutation({
         userId,
       },
     );
+    return square;
   },
 });
 

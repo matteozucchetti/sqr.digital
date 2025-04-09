@@ -33,8 +33,7 @@ async function getStripeEvent(request: Request) {
       process.env.STRIPE_WEBHOOK_SECRET,
     );
     return event;
-  } catch (err: unknown) {
-    console.log(err);
+  } catch (_err: unknown) {
     throw new Error(ERRORS.STRIPE_SOMETHING_WENT_WRONG);
   }
 }
@@ -56,8 +55,8 @@ const handleUpdateSubscription = async (
       priceStripeId: subscriptionItem.price.id,
       interval: subscriptionItem.plan.interval as Infer<typeof Interval>,
       status: subscription.status,
-      currentPeriodStart: subscription.current_period_start,
-      currentPeriodEnd: subscription.current_period_end,
+      currentPeriodStart: subscription.items.data[0].current_period_start,
+      currentPeriodEnd: subscription.items.data[0].current_period_end,
       cancelAtPeriodEnd: subscription.cancel_at_period_end,
     },
   });
