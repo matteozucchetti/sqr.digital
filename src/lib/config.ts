@@ -5,6 +5,9 @@ export const ERRORS = {
     "Esiste già uno Square con questo nome, scegline un altro",
   STRIPE_CUSTOMER_NOT_CREATED: "Errore nella creazione del cliente Stripe",
   STRIPE_SOMETHING_WENT_WRONG: "Qualcosa è andato storto",
+  ENVS_NOT_INITIALIZED: "Le variabili d'ambiente non sono state inizializzate",
+  STRIPE_MISSING_SIGNATURE: "Stripe signature mancante",
+  SOMETHING_WENT_WRONG: "Qualcosa è andato storto",
 } as const;
 
 // PLANS
