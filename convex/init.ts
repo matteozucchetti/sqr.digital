@@ -1,15 +1,21 @@
 import { internal } from "@/convex/_generated/api";
 import { internalAction, internalMutation } from "@/convex/_generated/server";
-import schema from "@/convex/schema";
+import schema, {
+  type Currency,
+  type Interval,
+  type Plans,
+} from "@/convex/schema";
 import { stripe } from "@/convex/stripe";
 import { CURRENCIES, ERRORS, INTERVALS, PLANS } from "@/lib/config";
 import { asyncMap } from "convex-helpers";
+import type { Infer } from "convex/values";
 
 const seedProducts = [
   {
     key: PLANS.FREE,
     name: "Free",
-    description: "Start with the basics, upgrade anytime.",
+    description:
+      "Piano free, per iniziare a usare Square e creare un QR code base per la tua struttura con le informazioni principali.",
     prices: {
       [INTERVALS.MONTH]: {
         [CURRENCIES.USD]: 0,
@@ -22,9 +28,26 @@ const seedProducts = [
     },
   },
   {
+    key: PLANS.SINGLE,
+    name: "Single",
+    description:
+      "Piano single, per iniziare a usare Square e creare un QR code e includere tutte le informazioni necessarie per la tua struttura.",
+    prices: {
+      [INTERVALS.MONTH]: {
+        [CURRENCIES.USD]: 990,
+        [CURRENCIES.EUR]: 990,
+      },
+      [INTERVALS.YEAR]: {
+        [CURRENCIES.USD]: 9990,
+        [CURRENCIES.EUR]: 9990,
+      },
+    },
+  },
+  {
     key: PLANS.PRO,
     name: "Pro",
-    description: "Access to all features and unlimited projects.",
+    description:
+      "Accesso a tutte le funzionalità di Square, con la possibilità di creare QR code illimitati se gestisci più strutture.",
     prices: {
       [INTERVALS.MONTH]: {
         [CURRENCIES.USD]: 1990,
@@ -90,13 +113,17 @@ export default internalAction(async (ctx) => {
           unit_amount: price.amount ?? 0,
           tax_behavior: "inclusive",
           recurring: {
-            interval: (price.interval as Interval) ?? INTERVALS.MONTH,
+            interval:
+              (price.interval as Infer<typeof Interval>) ?? INTERVALS.MONTH,
           },
         });
       }),
     );
 
-    const getPrice = (currency: Currency, interval: Interval) => {
+    const getPrice = (
+      currency: Infer<typeof Currency>,
+      interval: Infer<typeof Interval>,
+    ) => {
       const price = stripePrices.find(
         (price) =>
           price.currency === currency && price.recurring?.interval === interval,
@@ -109,7 +136,7 @@ export default internalAction(async (ctx) => {
 
     await ctx.runMutation(internal.init.insertSeedPlan, {
       stripeId: stripeProduct.id,
-      key: product.key as PlanKey,
+      key: product.key as Infer<typeof Plans>,
       name: product.name,
       description: product.description,
       prices: {
@@ -130,7 +157,7 @@ export default internalAction(async (ctx) => {
       prices: stripePrices.map((price) => price.id),
     };
   });
-  console.info(`📦 Stripe Products has been successfully created.`);
+  console.info("📦 Stripe Products has been successfully created.");
 
   // Configure Customer Portal.
   await stripe.billingPortal.configurations.create({
@@ -156,7 +183,7 @@ export default internalAction(async (ctx) => {
     },
   });
 
-  console.info(`👒 Stripe Customer Portal has been successfully configured.`);
+  console.info("👒 Stripe Customer Portal has been successfully configured.");
   console.info(
     "🎉 Visit: https://dashboard.stripe.com/test/products to see your products.",
   );

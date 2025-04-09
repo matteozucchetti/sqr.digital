@@ -45,25 +45,30 @@ const Theme = v.union(
   v.literal(THEMES.DEFAULT),
 );
 
-const Plans = v.union(
+export const Plans = v.union(
   v.literal(PLANS.FREE),
   v.literal(PLANS.SINGLE),
   v.literal(PLANS.PRO),
 );
 
-const Price = v.object({
+export const Currency = v.union(
+  v.literal(CURRENCIES.USD),
+  v.literal(CURRENCIES.EUR),
+);
+
+export const Price = v.object({
   stripeId: v.string(),
   amount: v.number(),
+});
+
+const Prices = v.object({
+  [CURRENCIES.USD]: Price,
+  [CURRENCIES.EUR]: Price,
 });
 
 export const Interval = v.union(
   v.literal(INTERVALS.MONTH),
   v.literal(INTERVALS.YEAR),
-);
-
-export const Currency = v.union(
-  v.literal(CURRENCIES.EUR),
-  v.literal(CURRENCIES.USD),
 );
 
 export default defineSchema({
@@ -90,8 +95,8 @@ export default defineSchema({
     name: v.string(),
     description: v.string(),
     prices: v.object({
-      [INTERVALS.MONTH]: Price,
-      [INTERVALS.YEAR]: Price,
+      [INTERVALS.MONTH]: Prices,
+      [INTERVALS.YEAR]: Prices,
     }),
   })
     .index("key", ["key"])
