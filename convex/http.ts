@@ -3,7 +3,7 @@ import type { Doc } from "@/convex/_generated/dataModel";
 import { type ActionCtx, httpAction } from "@/convex/_generated/server";
 import type { Currency, Interval } from "@/convex/schema";
 import { stripe } from "@/convex/stripe";
-import { ERRORS, PLANS } from "@/lib/config";
+import { ERRORS } from "@/lib/config";
 import { httpRouter } from "convex/server";
 import type { Infer } from "convex/values";
 import type Stripe from "stripe";
@@ -79,10 +79,7 @@ const handleCheckoutSessionCompleted = async (
     throw new Error(ERRORS.SOMETHING_WENT_WRONG);
   }
 
-  const freeSubscriptionStripeId =
-    user.subscription.planKey === PLANS.FREE
-      ? user.subscription.stripeId
-      : undefined;
+  const existingSubscriptionStripeId = user.subscription.stripeId;
 
   const subscription = await stripe.subscriptions.retrieve(subscriptionId);
 
@@ -101,13 +98,15 @@ const handleCheckoutSessionCompleted = async (
   ).data.map((sub) => sub.items);
 
   if (subscriptions.length > 1) {
-    const freeSubscription = subscriptions.find((sub) =>
+    const existingSubscription = subscriptions.find((sub) =>
       sub.data.some(
-        ({ subscription }) => subscription === freeSubscriptionStripeId,
+        ({ subscription }) => subscription === existingSubscriptionStripeId,
       ),
     );
-    if (freeSubscription) {
-      await stripe.subscriptions.cancel(freeSubscription?.data[0].subscription);
+    if (existingSubscription) {
+      await stripe.subscriptions.cancel(
+        existingSubscription.data[0].subscription,
+      );
     }
   }
 

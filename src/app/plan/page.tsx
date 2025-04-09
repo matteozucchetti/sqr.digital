@@ -54,7 +54,7 @@ export default function Onboarding() {
 
   return (
     <div className="mx-auto py-12 flex flex-col gap-4 text-center">
-      <Display1 as="h1">Upgrade del piano</Display1>
+      <Display1 as="h1">Piano</Display1>
 
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
         {plans?.map((plan) => (

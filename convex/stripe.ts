@@ -220,7 +220,7 @@ export const PREAUTH_deleteSubscription = internalMutation({
       .withIndex("stripeId", (q) => q.eq("stripeId", args.subscriptionStripeId))
       .unique();
     if (!subscription) {
-      throw new Error(ERRORS.STRIPE_SOMETHING_WENT_WRONG);
+      return;
     }
     await ctx.db.delete(subscription._id);
   },
@@ -334,8 +334,8 @@ export const createSubscriptionCheckout = action({
       line_items: [{ price: price?.stripeId, quantity: 1 }],
       mode: "subscription",
       payment_method_types: ["card"],
-      success_url: "http://localhost:3000/checkout",
-      cancel_url: "http://localhost:3000/upgrade",
+      success_url: "http://localhost:3000/plan",
+      cancel_url: "http://localhost:3000/plan",
     });
     if (!checkout) {
       throw new Error(ERRORS.STRIPE_SOMETHING_WENT_WRONG);
@@ -363,7 +363,7 @@ export const createCustomerPortal = action({
 
     const customerPortal = await stripe.billingPortal.sessions.create({
       customer: user.customerId,
-      return_url: `${process.env.SITE_URL}/dashboard/settings/billing`,
+      return_url: "http://localhost:3000/plan",
     });
     if (!customerPortal) {
       throw new Error(ERRORS.STRIPE_SOMETHING_WENT_WRONG);
