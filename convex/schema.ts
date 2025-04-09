@@ -3,8 +3,6 @@ import { authTables } from "@convex-dev/auth/server";
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
-const Plan = v.union(v.literal("free"), v.literal("single"), v.literal("pro"));
-
 const WiFi = v.optional(
   v.object({
     ssid: v.string(),
@@ -83,8 +81,6 @@ export default defineSchema({
     phoneVerificationTime: v.optional(v.number()),
     isAnonymous: v.optional(v.boolean()),
     customerId: v.optional(v.string()),
-
-    plan: Plan,
   })
     .index("email", ["email"])
     .index("customerId", ["customerId"]),

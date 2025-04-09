@@ -1,7 +1,8 @@
-import { THEMES } from "@/lib/config";
+import { CURRENCIES, THEMES } from "@/lib/config";
 import { getAuthUserId } from "@convex-dev/auth/server";
 import { v } from "convex/values";
 import { ConvexError } from "convex/values";
+import { internal } from "./_generated/api";
 import { mutation, query } from "./_generated/server";
 import type { DatabaseReader } from "./_generated/server";
 
@@ -71,12 +72,28 @@ export const createSquare = mutation({
       throw new ConvexError("Not authenticated");
     }
 
+    const user = await ctx.db.get(userId);
+    if (!user) {
+      return;
+    }
+
     await checkDuplicateSquareName(ctx, args.name);
-    return await ctx.db.insert("squares", {
+    await ctx.db.insert("squares", {
       name: args.name,
       userId,
       theme: THEMES.DEFAULT,
     });
+    if (user.customerId) {
+      return;
+    }
+    await ctx.scheduler.runAfter(
+      0,
+      internal.stripe.PREAUTH_createStripeCustomer,
+      {
+        currency: CURRENCIES.EUR,
+        userId,
+      },
+    );
   },
 });
 

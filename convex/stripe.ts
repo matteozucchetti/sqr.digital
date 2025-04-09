@@ -258,8 +258,8 @@ export const PREAUTH_createFreeStripeSubscription = internalAction({
       stripeSubscriptionId: stripeSubscription.id,
       status: stripeSubscription.status,
       interval: INTERVALS.YEAR,
-      currentPeriodStart: stripeSubscription.current_period_start,
-      currentPeriodEnd: stripeSubscription.current_period_end,
+      currentPeriodStart: stripeSubscription.items.data[0].current_period_start,
+      currentPeriodEnd: stripeSubscription.items.data[0].current_period_end,
       cancelAtPeriodEnd: stripeSubscription.cancel_at_period_end,
     });
 

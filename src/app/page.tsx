@@ -1,6 +1,7 @@
 import { AppFooter } from "@/components/app-footer";
 import { ComingSoon } from "@/components/coming-soon";
 import { Navigation } from "@/components/navigation";
+import { PricingTable } from "@/components/pricing-table";
 import { api } from "@/convex/_generated/api";
 import { convexAuthNextjsToken } from "@convex-dev/auth/nextjs/server";
 import { preloadQuery } from "convex/nextjs";
@@ -27,6 +28,7 @@ export default async function Home() {
       </header>
       <main className="row-start-2">
         <ComingSoon />
+        <PricingTable />
       </main>
       <footer className="row-start-3">
         <AppFooter />
