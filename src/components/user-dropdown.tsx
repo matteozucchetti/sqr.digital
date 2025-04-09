@@ -8,14 +8,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { api } from "@/convex/_generated/api";
-import type { Doc } from "@/convex/_generated/dataModel";
-import { PLANS } from "@/lib/config";
-import { type Preloaded, usePreloadedQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import type { Doc, Id } from "@/convex/_generated/dataModel";
+import { ERRORS, PLANS } from "@/lib/config";
+import { type Preloaded, useAction, usePreloadedQuery } from "convex/react";
 import { UserIcon } from "lucide-react";
 import Link from "next/link";
+import { toast } from "sonner";
 import { SignOut } from "./auth/sign-out";
-import { Text } from "./typography";
+import { Small } from "./typography";
 
 function squareButton(square: Doc<"squares">) {
   return (
@@ -40,7 +41,22 @@ export function UserDropdown({
   const user = usePreloadedQuery(preloadedUser);
   const squares = usePreloadedQuery(preloadedSquares);
   const plan = user?.subscription?.planKey;
+  const createCustomerPortal = useAction(api.stripe.createCustomerPortal);
 
+  async function handleCreateCustomerPortal() {
+    try {
+      const customerPortalUrl = await createCustomerPortal({
+        userId: user?._id as Id<"users">,
+      });
+      if (!customerPortalUrl) {
+        toast.error(ERRORS.SOMETHING_WENT_WRONG);
+        return;
+      }
+      window.location.href = customerPortalUrl;
+    } catch (_error) {
+      toast.error(ERRORS.SOMETHING_WENT_WRONG);
+    }
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -73,9 +89,17 @@ export function UserDropdown({
           </>
         )}
         <div className="flex flex-col gap-2 py-2">
-          <Text>Piano: {plan?.toUpperCase()}</Text>
-          <SignOut />
+          <Small className="mb-0">Piano: {plan?.toUpperCase()}</Small>
+          <Button
+            variant="link"
+            className="justify-start text-sm"
+            onClick={handleCreateCustomerPortal}
+          >
+            Gestione del piano
+          </Button>
+          <DropdownMenuSeparator />
         </div>
+        <SignOut />
       </DropdownMenuContent>
     </DropdownMenu>
   );

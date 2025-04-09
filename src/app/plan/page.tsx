@@ -1,6 +1,6 @@
 "use client";
 
-import { Display1, Display2, Small, Text } from "@/components/typography";
+import { Display1, Display2, Text } from "@/components/typography";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/ui/icons";
@@ -45,9 +45,6 @@ export default function Onboarding() {
     }
   };
 
-  // TODO: delete plan
-  const handleDowngrade = async () => {};
-
   if (!user) {
     return null;
   }
@@ -74,26 +71,19 @@ export default function Onboarding() {
                 : `${(plan.prices[INTERVALS.MONTH].eur.amount / 100).toFixed(2)} €`}
             </Text>
             {plan.key !== PLANS.FREE && (
-              <>
-                <Button
-                  variant="default"
-                  disabled={plan.key === activePlan || loadingPlan !== null}
-                  onClick={() => handleUpgrade(plan._id)}
-                >
-                  {loadingPlan === plan._id ? (
-                    <Icons.Loader className="animate-spin" />
-                  ) : plan.key === activePlan ? (
-                    "Piano attuale"
-                  ) : (
-                    "Seleziona piano"
-                  )}
-                </Button>
-                {plan.key === activePlan && (
-                  <Button variant="link" onClick={() => handleDowngrade()}>
-                    <Small>Cancella piano</Small>
-                  </Button>
+              <Button
+                variant="default"
+                disabled={plan.key === activePlan || loadingPlan !== null}
+                onClick={() => handleUpgrade(plan._id)}
+              >
+                {loadingPlan === plan._id ? (
+                  <Icons.Loader className="animate-spin" />
+                ) : plan.key === activePlan ? (
+                  "Piano attuale"
+                ) : (
+                  "Seleziona piano"
                 )}
-              </>
+              </Button>
             )}
           </div>
         ))}
