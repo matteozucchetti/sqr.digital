@@ -58,8 +58,6 @@
 3. **Environment Variables**
    ```env
    NEXT_PUBLIC_CONVEX_URL=
-   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
-   CLERK_SECRET_KEY=
    RESEND_API_KEY=
    ```
 

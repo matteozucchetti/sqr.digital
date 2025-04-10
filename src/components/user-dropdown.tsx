@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { api } from "@/convex/_generated/api";
-import type { Doc, Id } from "@/convex/_generated/dataModel";
+import type { Doc } from "@/convex/_generated/dataModel";
 import { ERRORS, PLANS } from "@/lib/config";
 import { type Preloaded, useAction, usePreloadedQuery } from "convex/react";
 import { UserIcon } from "lucide-react";
@@ -42,11 +42,17 @@ export function UserDropdown({
   const squares = usePreloadedQuery(preloadedSquares);
   const plan = user?.subscription?.planKey;
   const createCustomerPortal = useAction(api.stripe.createCustomerPortal);
+  const canUpdateSubscription = plan === PLANS.FREE || plan === PLANS.SINGLE;
+  const canManageSubscription = plan === PLANS.SINGLE || plan === PLANS.PRO;
 
-  async function handleCreateCustomerPortal() {
+  async function handleCreateCustomerPortal({
+    updateSubscription,
+  }: {
+    updateSubscription: boolean;
+  }) {
     try {
       const customerPortalUrl = await createCustomerPortal({
-        userId: user?._id as Id<"users">,
+        updateSubscription,
       });
       if (!customerPortalUrl) {
         toast.error(ERRORS.SOMETHING_WENT_WRONG);
@@ -57,6 +63,7 @@ export function UserDropdown({
       toast.error(ERRORS.SOMETHING_WENT_WRONG);
     }
   }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -90,13 +97,28 @@ export function UserDropdown({
         )}
         <div className="flex flex-col gap-2 py-2">
           <Small className="mb-0">Piano: {plan?.toUpperCase()}</Small>
-          <Button
-            variant="link"
-            className="justify-start text-sm"
-            onClick={handleCreateCustomerPortal}
-          >
-            Gestione del piano
-          </Button>
+          {canUpdateSubscription && (
+            <Button
+              variant="link"
+              className="justify-start text-sm"
+              onClick={() =>
+                handleCreateCustomerPortal({ updateSubscription: true })
+              }
+            >
+              Upgrade del piano
+            </Button>
+          )}
+          {canManageSubscription && (
+            <Button
+              variant="link"
+              className="justify-start text-sm"
+              onClick={() =>
+                handleCreateCustomerPortal({ updateSubscription: false })
+              }
+            >
+              Gestione del piano
+            </Button>
+          )}
           <DropdownMenuSeparator />
         </div>
         <SignOut />

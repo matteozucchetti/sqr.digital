@@ -5,23 +5,13 @@ import {
   internalMutation,
   internalQuery,
 } from "@/convex/_generated/server";
-import { INTERVALS, PLANS } from "@/lib/config";
+import { CURRENCIES, INTERVALS, PLANS } from "@/lib/config";
 import { ERRORS } from "@/lib/config";
 import { getAuthUserId } from "@convex-dev/auth/server";
 import { asyncMap } from "convex-helpers";
 import { v } from "convex/values";
 import Stripe from "stripe";
 import { Currency, Interval } from "./schema";
-
-/**
- * TODO: Uncomment to require Stripe keys.
- * Also remove the `|| ''` from the Stripe constructor.
- */
-/*
-if (!STRIPE_SECRET_KEY) {
-  throw new Error(`Stripe - ${ERRORS.ENVS_NOT_INITIALIZED})`)
-}
-*/
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
   apiVersion: "2025-03-31.basil",
@@ -223,6 +213,24 @@ export const PREAUTH_deleteSubscription = internalMutation({
       return;
     }
     await ctx.db.delete(subscription._id);
+
+    // re-create the free subscription
+    const user = await ctx.runQuery(internal.stripe.PREAUTH_getUserById, {
+      userId: subscription.userId,
+    });
+    if (!user || !user.customerId) {
+      throw new Error(ERRORS.STRIPE_SOMETHING_WENT_WRONG);
+    }
+
+    await ctx.scheduler.runAfter(
+      0,
+      internal.stripe.PREAUTH_createFreeStripeSubscription,
+      {
+        userId: subscription.userId,
+        customerId: user.customerId,
+        currency: subscription.currency,
+      },
+    );
   },
 });
 
@@ -241,7 +249,7 @@ export const PREAUTH_createFreeStripeSubscription = internalAction({
       throw new Error(ERRORS.STRIPE_SOMETHING_WENT_WRONG);
     }
 
-    const yearlyPrice = plan.prices[INTERVALS.YEAR][args.currency];
+    const yearlyPrice = plan.prices[INTERVALS.YEAR][CURRENCIES.EUR];
 
     const stripeSubscription = await stripe.subscriptions.create({
       customer: args.customerId,
@@ -253,7 +261,7 @@ export const PREAUTH_createFreeStripeSubscription = internalAction({
     await ctx.runMutation(internal.stripe.PREAUTH_createSubscription, {
       userId: args.userId,
       planId: plan._id,
-      currency: args.currency,
+      currency: CURRENCIES.EUR,
       priceStripeId: stripeSubscription.items.data[0].price.id,
       stripeSubscriptionId: stripeSubscription.id,
       status: stripeSubscription.status,
@@ -327,15 +335,15 @@ export const createSubscriptionCheckout = action({
       throw new Error(ERRORS.STRIPE_CANNOT_PROCESS_CURRENT_PLAN);
     }
 
-    const price = newPlan?.prices[args.planInterval][args.currency];
+    const price = newPlan?.prices[args.planInterval][CURRENCIES.EUR];
 
     const checkout = await stripe.checkout.sessions.create({
       customer: user.customerId,
       line_items: [{ price: price?.stripeId, quantity: 1 }],
       mode: "subscription",
       payment_method_types: ["card"],
-      success_url: "http://localhost:3000/plan",
-      cancel_url: "http://localhost:3000/plan",
+      success_url: "http://localhost:3000/admin",
+      cancel_url: "http://localhost:3000/admin",
     });
     if (!checkout) {
       throw new Error(ERRORS.STRIPE_SOMETHING_WENT_WRONG);
@@ -349,9 +357,9 @@ export const createSubscriptionCheckout = action({
  */
 export const createCustomerPortal = action({
   args: {
-    userId: v.id("users"),
+    updateSubscription: v.boolean(),
   },
-  handler: async (ctx) => {
+  handler: async (ctx, args) => {
     const userId = await getAuthUserId(ctx);
     if (!userId) {
       return;
@@ -360,10 +368,26 @@ export const createCustomerPortal = action({
     if (!user || !user.customerId) {
       throw new Error(ERRORS.STRIPE_SOMETHING_WENT_WRONG);
     }
+    if (args.updateSubscription) {
+      const customerPortal = await stripe.billingPortal.sessions.create({
+        customer: user.customerId,
+        return_url: "http://localhost:3000/admin",
+        flow_data: {
+          type: "subscription_update",
+          subscription_update: {
+            subscription: user?.subscription?.stripeId || "",
+          },
+        },
+      });
+      if (!customerPortal) {
+        throw new Error(ERRORS.STRIPE_SOMETHING_WENT_WRONG);
+      }
+      return customerPortal.url;
+    }
 
     const customerPortal = await stripe.billingPortal.sessions.create({
       customer: user.customerId,
-      return_url: "http://localhost:3000/plan",
+      return_url: "http://localhost:3000/admin",
     });
     if (!customerPortal) {
       throw new Error(ERRORS.STRIPE_SOMETHING_WENT_WRONG);

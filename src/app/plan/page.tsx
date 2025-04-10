@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/ui/icons";
 import { api } from "@/convex/_generated/api";
 import type { Id } from "@/convex/_generated/dataModel";
-import { ERRORS, INTERVALS, PLANS } from "@/lib/config";
+import { CURRENCIES, ERRORS, INTERVALS, PLANS } from "@/lib/config";
 import { useAction, useQuery } from "convex/react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -26,7 +26,7 @@ export default function Onboarding() {
       const checkoutUrl = await createSubscriptionCheckout({
         planId: planId as Id<"plans">,
         planInterval: INTERVALS.MONTH,
-        currency: "eur",
+        currency: CURRENCIES.EUR,
         userId: user?._id as Id<"users">,
       });
 
