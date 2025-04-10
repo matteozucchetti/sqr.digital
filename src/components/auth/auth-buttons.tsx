@@ -16,6 +16,7 @@ export function AuthButtons({
   return (
     <>
       <Authenticated>
+        TODO: upgrade del piano sempre visibile se non pro
         <UserDropdown
           preloadedUser={preloadedUser}
           preloadedSquares={preloadedSquares}
